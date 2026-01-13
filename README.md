@@ -7,34 +7,17 @@ Mini système de combat développé en C# via Visual Studio.
 Choix entre 4 personnages, chacun avec un type unique.
 Chaque type possède ses forces, faiblesses, résistances et immunités.
 Certaines attaques peuvent produire des effets supplémentaires, ajoutant de la stratégie au combat.
-⚠️ Le code fonctionne mais peut encore être optimisé. Ce projet m’a surtout permis de tester la programmation orientée objet, la gestion des interactions entre types et la logique de combat.
+ ! Le code fonctionne mais peut encore être optimisé. Ce projet m’a surtout permis de tester la programmation orientée objet, la gestion des interactions entre types et la logique de combat.
 
-Tableau des interactions entre types
-Attaquant \ Défenseur
-Automne
-Pénombre
-Vénéneux
-Givré
-Automne
-1×
-2×
-0×
-1×
-Pénombre
-0×
-2×
-2×
-0×
-Vénéneux
-2×
-1×
-0.5×
-0.5×
-Givré
-2×
-1×
-2×
-1×
+## Tableau des interactions de types
+
+| Attaquant \ Défenseur | Automne | Pénombre | Vénéneux | Givré |
+|----------------------|---------|----------|----------|-------|
+| **Automne**          | 1×      | 2×       | 0×       | 1×    |
+| **Pénombre**        | 0×      | 2×       | 2×       | 0×    |
+| **Vénéneux**        | 2×      | 1×       | 0.5×     | 0.5×  |
+| **Givré**           | 2×      | 1×       | 2×       | 1×    |
+
 Légende :
 2× : super efficace
 1× : dégâts normaux
