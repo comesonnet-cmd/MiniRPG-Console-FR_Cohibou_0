@@ -1,4 +1,3 @@
-# MiniRPG-Console-FR_Cohibou_0
 
 # Mini système de combat en C#
 
