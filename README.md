@@ -41,41 +41,41 @@ Mini système de combat développé en **C# via Visual Studio**.
 
 ### 1) Cohibou (Type Automne)
 
-| Attaque                      | Puissance | Effet               | Description                                                          |
-| ---------------------------- | --------- | ------------------- | -------------------------------------------------------------------- |
-| Feuille rouge                | 0         | Immunité Givre      | Immunise le lanceur contre le givre pendant 3 tours.                 |
-| Feuille dorée                | 0         | Protection Vénéneux | Réduit de moitié les dégâts des attaques vénéneuses pendant 3 tours. |
-| Jet de pomme de pin          | 5         | Aucun               | Attaque offensive simple.                                            |
-| Jet de bogue                 | 15        | Aucun               | Attaque offensive puissante.                                         |
-| Attaque imprévue : Égarement | 15        | Aucun               | Utilisée si Cohibou est acculé après 3 tours sans attaque efficace.  |
+| Attaque                      | Puissance | Type           | Effet               | Description                                                          |
+| ---------------------------- | --------- | -------------- | ------------------- | -------------------------------------------------------------------- |
+| Feuille rouge                | 0         | Automne        | Immunité Givre      | Immunise le lanceur contre le givre pendant 3 tours.                 |
+| Feuille dorée                | 0         | Automne        | Protection Vénéneux | Réduit de moitié les dégâts des attaques vénéneuses pendant 3 tours. |
+| Jet de pomme de pin          | 5         | Automne        | Aucun               | Attaque offensive simple.                                            |
+| Jet de bogue                 | 15        | Automne        | Aucun               | Attaque offensive puissante.                                         |
+| Attaque imprévue : Égarement | 15        | Pénombre       | Aucun               | Utilisée si Cohibou est acculé après 3 tours sans attaque efficace.  |
 
 ---
 
 ### 2) Sbire Pétrole (Type Pénombre)
 
-| Attaque             | Puissance | Effet               | Description                                                                |
-| ------------------- | --------- | ------------------- | -------------------------------------------------------------------------- |
-| Conversion nocturne | 5         | Conversion Pénombre | Change le type de la cible en Pénombre jusqu’à la fin du combat.           |
-| Obscure mélasse     | 5         | Engluage            | Englue la cible : 50 % de chance de ne pas pouvoir attaquer à chaque tour. |
+| Attaque             | Puissance | Type           | Effet               | Description                                                                |
+| ------------------- | --------- | -------------- | ------------------- | -------------------------------------------------------------------------- |
+| Conversion nocturne | 5         | Pénombre       | Conversion Pénombre | Change le type de la cible en Pénombre jusqu’à la fin du combat.           |
+| Obscure mélasse     | 5         | Pénombre       | Engluage            | Englue la cible : 50 % de chance de ne pas pouvoir attaquer à chaque tour. |
 
 ---
 
 ### 3) Sbire Suintant (Type Vénéneux)
 
-| Attaque       | Puissance | Effet             | Description                                                                         |
-| ------------- | --------- | ----------------- | ----------------------------------------------------------------------------------- |
-| Méthylène gun | 5         | Empoisonnement    | Inflige 5 PV de dégâts à chaque tour jusqu’au KO.                                   |
-| Smog bleu     | 10        | Aucun             | Attaque offensive classique.                                                        |
-| Poche         | 0         | Pochette surprise | Tire à pile ou face : si pile, rien ne se passe ; si face, lance Smog bleu (10 PV). |
+| Attaque       | Puissance | Type           | Effet             | Description                                                                         |
+| ------------- | --------- | -------------- | ----------------- | ----------------------------------------------------------------------------------- |
+| Méthylène gun | 5         | Vénéneux       | Empoisonnement    | Inflige 5 PV de dégâts à chaque tour jusqu’au KO.                                   |
+| Smog bleu     | 10        | Vénéneux       | Aucun             | Attaque surprise lancée après "Poche" si face. Attaque offensive classique.         |
+| Poche         | 0         | Vénéneux       | Pochette surprise | Tire à pile ou face : si pile, rien ne se passe ; si face, lance Smog bleu (10 PV). |
 
 ---
 
 ### 4) Grêlon (Type Givré)
 
-| Attaque     | Puissance | Effet | Description                  |
-| ----------- | --------- | ----- | ---------------------------- |
-| Gelée douce | 5         | Aucun | Attaque offensive classique. |
-| Martelage   | 5         | Aucun | Attaque offensive classique. |
+| Attaque     | Puissance | Type           | Effet | Description                  |
+| ----------- | --------- | -------------- | ----- | ---------------------------- |
+| Gelée douce | 5         | Givré          | Aucun | Attaque offensive classique. |
+| Martelage   | 5         | Pénombre       | Aucun | Attaque offensive classique. |
 
 ---
 
