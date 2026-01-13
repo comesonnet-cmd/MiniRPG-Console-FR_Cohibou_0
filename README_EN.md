@@ -40,41 +40,41 @@ This project mainly served as practice for **object-oriented programming**, **ty
 
 ### 1) Cohibou (Autumn Type)
 
-| Attack               | Power | Effect           | Description                                                      |
-|---------------------|-------|-----------------|------------------------------------------------------------------|
-| Red Leaf            | 0     | Frost Immunity   | Makes the user immune to Frost attacks for 3 turns.             |
-| Golden Leaf         | 0     | Venom Protection | Reduces damage from Venomous attacks by 50% for 3 turns.        |
-| Pinecone Throw      | 5     | None             | Basic offensive attack.                                          |
-| Spiny Shell Throw   | 15    | None             | Strong offensive attack.                                         |
-| Surprise Attack: Mislead | 15 | None            | Used if Cohibou is cornered after 3 turns without an effective attack. |
+| Attack               | Power | Type           | Effect           | Description                                                      |
+|---------------------|-------|---------------- | -----------------|------------------------------------------------------------------|
+| Red Leaf            | 0     | Autumn          | Frost Immunity   | Makes the user immune to Frost attacks for 3 turns.             |
+| Golden Leaf         | 0     | Autumn          | Venom Protection | Reduces damage from Venomous attacks by 50% for 3 turns.        |
+| Pinecone Throw      | 5     | Autumn          | None             | Basic offensive attack.                                          |
+| Spiny Shell Throw   | 15    | Autumn          | None             | Strong offensive attack.                                         |
+| Surprise Attack: Mislead | 15 | Penumbra         | None            | Used if Cohibou is cornered after 3 turns without an effective attack. |
 
 ---
 
 ### 2) Oil Minion (Penumbra Type)
 
-| Attack               | Power | Effect           | Description                                                      |
-|---------------------|-------|-----------------|------------------------------------------------------------------|
-| Nocturnal Conversion | 5     | Penumbra Conversion | Changes the target's type to Penumbra until the end of the battle. |
-| Dark Slime           | 5     | Sticky           | Glues the target: 50% chance the target cannot act each turn.   |
+| Attack               | Power | Type           | Effect           | Description                                                      |
+|---------------------|-------|---------------- | -----------------|------------------------------------------------------------------|
+| Nocturnal Conversion | 5     | Penumbra       | Penumbra Conversion | Changes the target's type to Penumbra until the end of the battle. |
+| Dark Slime           | 5     | Penumbra       | Sticky           | Glues the target: 50% chance the target cannot act each turn.   |
 
 ---
 
 ### 3) Oozing Minion (Venomous Type)
 
-| Attack       | Power | Effect  | Description                                                      |
-|-------------|-------|---------|------------------------------------------------------------------|
-| Methylene Gun | 5     | Poison  | Inflicts 5 HP damage each turn until KO.                         |
-| Blue Smog    | 10    | None    | Standard offensive attack.                                        |
-| Pocket       | 0     | Surprise | Coin toss: heads = does nothing; tails = launches Blue Smog (10 HP). |
+| Attack       | Power | Type           | Effect  | Description                                                      |
+|-------------|-------|---------------- | ---------|------------------------------------------------------------------|
+| Methylene Gun | 5     | Venomous      | Poison  | Inflicts 5 HP damage each turn until KO.                         |
+| Blue Smog    | 10    | Venomous       | None    | Surprise attack launched after 'Pocket' if heads. Standard offensive attack. |
+| Pocket       | 0     | Venomous       | Surprise | Coin toss: tails = does nothing; heads = launches Blue Smog (10 HP). |
 
 ---
 
 ### 4) Hail (Frost Type)
 
-| Attack       | Power | Effect | Description                     |
-|-------------|-------|--------|---------------------------------|
-| Soft Gel    | 5     | None   | Standard offensive attack.      |
-| Hammering   | 5     | None   | Standard offensive attack.      |
+| Attack       | Power | Type           | Effect | Description                     |
+|-------------|-------|---------------- | --------|---------------------------------|
+| Soft Gel    | 5     | Frost           | None   | Standard offensive attack.      |
+| Hammering   | 5     | Penumbra        | None   | Standard offensive attack.      |
 
 ---
 
