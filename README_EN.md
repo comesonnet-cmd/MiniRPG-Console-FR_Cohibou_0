@@ -1,5 +1,7 @@
 # Mini Combat System in C#
 
+EN English | [Français](README.md)
+
 A solo project developed outside of school to experiment with game logic and type interactions.
 
 ---
