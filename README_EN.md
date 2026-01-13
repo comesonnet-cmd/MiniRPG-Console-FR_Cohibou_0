@@ -1,6 +1,6 @@
 # Mini Combat System in C#
 
-EN English | [Français](README.md)
+🇬🇧 English | [Français](README.md)
 
 A solo project developed outside of school to experiment with game logic and type interactions.
 
@@ -15,7 +15,7 @@ It allows players to:
 - Engage in battles where **types interact**, with strengths, weaknesses, resistances, and immunities.  
 - Use attacks that may produce **additional effects**, adding strategy to battles.  
 
- The code works but could still be optimized.  
+> The code works but could still be optimized.  
 This project mainly served as practice for **object-oriented programming**, **type interactions**, and **combat logic**.
 
 ---
