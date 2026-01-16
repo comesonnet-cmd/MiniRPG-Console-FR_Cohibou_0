@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projet_COHIBOU_Forêt", "Projet_COHIBOU_Forêt.csproj", "{7D091142-4368-4A8C-B9EF-F3660842192E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniRPG-Console-FR_Cohibou_0", "MiniRPG-Console-FR_Cohibou_0.csproj", "{3EC357C9-4E38-4D3D-9438-36BA12AAC89C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7D091142-4368-4A8C-B9EF-F3660842192E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D091142-4368-4A8C-B9EF-F3660842192E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D091142-4368-4A8C-B9EF-F3660842192E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D091142-4368-4A8C-B9EF-F3660842192E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC357C9-4E38-4D3D-9438-36BA12AAC89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC357C9-4E38-4D3D-9438-36BA12AAC89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC357C9-4E38-4D3D-9438-36BA12AAC89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC357C9-4E38-4D3D-9438-36BA12AAC89C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2BA437DA-3DAA-423D-85ED-D7B88341743F}
+		SolutionGuid = {1CF77812-DF96-4D2E-8AC5-187866E48F1D}
 	EndGlobalSection
 EndGlobal
