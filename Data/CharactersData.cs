@@ -1,4 +1,4 @@
-﻿using MiniRPG_Console_FR_Cohibou_0.Attacks;
+﻿using Game;
 using MiniRPG_Console_FR_Cohibou_0.Characters;
 
 static class CharactersData

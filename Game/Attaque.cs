@@ -1,11 +1,11 @@
 ﻿using MiniRPG_Console_FR_Cohibou_0.Characters;
 
-namespace MiniRPG_Console_FR_Cohibou_0.Attacks
+namespace Game
 {
     public class Attaque
     {
         public string Nom;
-        public TypeElement Type;
+        public Element.TYPE ;
         public int Puissance;
 
         public EffetType Effet = EffetType.Aucun;   // Par défaut : aucun effet

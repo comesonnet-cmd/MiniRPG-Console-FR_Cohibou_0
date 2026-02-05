@@ -1,5 +1,4 @@
-﻿using MiniRPG_Console_FR_Cohibou_0.Attacks;
-using MiniRPG_Console_FR_Cohibou_0.Game;
+﻿using Game;
 using System;
 using System.Collections.Generic;
 

@@ -1,6 +1,5 @@
-﻿using MiniRPG_Console_FR_Cohibou_0;
-
-using MiniRPG_Console_FR_Cohibou_0.Game;
+﻿using Game;
+using MiniRPG_Console_FR_Cohibou_0;
 
 namespace MiniRPG_Console_FR_Cohibou_0
 {
