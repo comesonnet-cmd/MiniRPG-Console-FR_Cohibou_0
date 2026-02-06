@@ -13,35 +13,10 @@ namespace Game.Fight
     {
         private static Random rnd = new Random();
 
-        public static void CheckEffects(Personnage turnPers, Personnage ennemi, ref bool shouldEndTurn)
-        {
-            //Ici tu CheckIfEnglue et CheckIfAccule, tu l'appelles à chaque début de tour
-            if(turnPers.EstEnglue()) {   //Alors qu'on doit l'appeler uniquement si le personnage est englué
-                if (EffectsManager.CheckIfEnglue(turnPers))
-                {
-                    shouldEndTurn = true;
-                    return;
-                }
-            }
-
-            //Pareil pour Accule
-            if(turnPers.EstAccule()){
-                if (EffectsManager.CheckIfAccule(turnPers, ennemi))
-                {
-                    shouldEndTurn = true;
-                    return;
-                }
-            }
-        }
         public static void TourJoueur(Personnage joueur, Personnage ennemi)
         {
-
-            bool shouldEndTurn = false;
-            CheckEffects(joueur, ennemi, ref shouldEndTurn);
-            if (shouldEndTurn) {
-                return;
-            }
-            
+                //Est ce que quelque chose bloque le joueur pour jouer ? (J'ai mis la fonction en bas du fichier)
+            if(!CanPlayThisTurn(joueur, ennemi)) return;
            
             Console.Clear();
             Thread.Sleep(500); // pause 0.5 seconde           
@@ -162,6 +137,28 @@ namespace Game.Fight
 
         }
 
+
+        //Sert à verifier tout les effets ou choses qui pourrait faire que le joueur dont c'est le tour ne joue pas. S'il ne peut pas joueur on retourne false, si toute les vérifications sont faite on retourne true -> il peut jouer.
+        public static void CanPlayThisTurn(Personnage turnPers, Personnage ennemi)
+        {
+            if(turnPers.EstEnglue()) {   
+                if (EffectsManager.CheckIfEnglue(turnPers))
+                {
+                    return false;
+                }
+            }
+
+            if(turnPers.EstAccule()){
+                if (EffectsManager.CheckIfAccule(turnPers, ennemi))
+                {
+                    return false;
+                }
+            }
+
+            //Imagine, si le joueur marche sur une banane -> peut pas jouer -> retourne false etc etc...
+
+            return true;
+        }
        
     }
 }

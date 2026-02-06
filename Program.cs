@@ -14,7 +14,7 @@ namespace MiniRPG_Console_FR_Cohibou_0
 
             // bool finish = false;
             // while(!finish){
-                    //Si on appuit sur echap, finish = true, alors on stop le jeu. 
+                    //Si on appuie sur echap, finish = true, alors on stop le jeu. 
             // }
         }
     }
