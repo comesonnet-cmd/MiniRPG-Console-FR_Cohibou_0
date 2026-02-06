@@ -17,6 +17,7 @@ namespace Game
 
         // 1. Initialisation des personnages:
 
+        //A la place d'init les persos ici, je créerais un PersonnageManager (par ex) qui se chargerait de tout ce qui a à voir avec les perso. 
         public static List<Personnage> CreerTousLesPersonnages()
         {
 
@@ -79,7 +80,7 @@ namespace Game
             
             // Définition de la grille pour le choix du personnage 2x2:
          
-            var perso = CreerTousLesPersonnages();
+            var perso = CreerTousLesPersonnages();  // Si tu as un PersonnageManager, cette ligne pourrait être : List<Personnage> perso = PersonnageManager.GetList(); (par ex)
             Personnage[,] grillePersonnages = new Personnage[2, 2]               // tableau multidimensionnel (ici 2 lignes × 2 colonnes). 
             {
                 { perso[0],         perso[1]},                                      // La première paire { Cohibou, SbireSuintant } est la ligne 0 (col 0 et col 1).

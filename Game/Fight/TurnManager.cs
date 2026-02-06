@@ -15,29 +15,32 @@ namespace Game.Fight
 
         public static void CheckEffects(Personnage turnPers, Personnage ennemi, ref bool shouldEndTurn)
         {
-            if (EffectsManager.CheckIfEnglue(turnPers))
-            {
-                shouldEndTurn = true;
-                return;
+            //Ici tu CheckIfEnglue et CheckIfAccule, tu l'appelles à chaque début de tour
+            if(turnPers.EstEnglue()) {   //Alors qu'on doit l'appeler uniquement si le personnage est englué
+                if (EffectsManager.CheckIfEnglue(turnPers))
+                {
+                    shouldEndTurn = true;
+                    return;
+                }
             }
 
-            if (EffectsManager.CheckIfAccule(turnPers, ennemi))
-            {
-                shouldEndTurn = true;
-                return;
+            //Pareil pour Accule
+            if(turnPers.EstAccule()){
+                if (EffectsManager.CheckIfAccule(turnPers, ennemi))
+                {
+                    shouldEndTurn = true;
+                    return;
+                }
             }
         }
         public static void TourJoueur(Personnage joueur, Personnage ennemi)
         {
 
             bool shouldEndTurn = false;
-
             CheckEffects(joueur, ennemi, ref shouldEndTurn);
-            
-                 if (shouldEndTurn)
-                 {
-                     return;
-                 }
+            if (shouldEndTurn) {
+                return;
+            }
             
            
             Console.Clear();
