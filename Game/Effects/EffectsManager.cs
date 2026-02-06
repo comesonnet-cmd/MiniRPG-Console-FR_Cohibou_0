@@ -1,5 +1,7 @@
 ﻿using System;
+using Game.Attacks;
 using Game.Characters;
+
 
 namespace Game.Effects
 {
@@ -18,39 +20,33 @@ namespace Game.Effects
            
         }
 
-        public static void CheckIfEnglue(Personnage p)
+        public static bool CheckIfEnglue(Personnage p)
         {
             // Engluage : une chance sur deux d'agir ou de ne rien faire
 
-            if (p.EstEnglue)
+            if (p.EstEnglue && !p.PeutAgirCeTour)
             {
                 bool para = rnd.Next(2) == 0;       // Génère soit 0, soit 1 (pile ou face) Si le résultat est 0 → para = true = paralysé Si le résultat est 1 → para = false = peut bouger
                 p.PeutAgirCeTour = !para;           // On Définie que peutAgirCeTour est true quand para est false
+                Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
+                Console.ReadKey();
+                                    // attaque bloquée ici : on appelle PeutAgirCeTour(), si la méthode retourne false alors on quitte le tour et l'attaque n'a jamais lieu 
+                return true;
             }
             else
             {
                 p.PeutAgirCeTour = true;
-            }
-
-            if (p.EstEnglue)
-            {
-                if (!p.PeutAgirCeTour)
-                {
-                    Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
-                    Console.ReadKey();
-                    return;
-                }                        // Si le joueur ne peut pas agir ce tour, on sort de Tour Joueur
-                else
-                {
                     Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
                     Console.ReadKey();
-                }
             }
+
+            return false;
+           
         }
 
-        public static void CheckIfAccule(Personnage joueur, Personnage ennemi)
+        public static bool CheckIfAccule(Personnage joueur, Personnage ennemi)
         {
-            if (joueur.EstAccule(ennemi))           // Si le joueur est acculé par l'ennemi, on initialise la durée EstIntouchable
+            if (joueur.EstAccule(ennemi))           // Si le joueur est acculé par l'ennemi , on initialise la durée EstIntouchable
             {
                 joueur.DureeEstIntouchable++;
             }
@@ -70,8 +66,31 @@ namespace Game.Effects
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }       // Tant que l’utilisateur n’appuie pas sur Entrée, on ne fait absolument rien et on attend.
 
                 joueur.LancerAttaque(ennemi, joueur.AttaqueImprevue);
-                return;
+                return true;
             }
+
+            
+            // Ennemi est acculé, il doit utiliser son attaque imprévue:
+
+            Attaque attaqueChoisie;
+
+            if (ennemi.EstAccule(joueur))
+            {
+                ennemi.DureeEstIntouchable++;
+            }
+            else
+            {
+                ennemi.DureeEstIntouchable = 0;
+            }
+
+            if (ennemi.EstAccule(joueur) && ennemi.AttaqueImprevue != null && ennemi.DureeEstIntouchable >= 3) // si 1. l'ennemi n'a pas d'attaques capable de toucher le joueur 2. qu'il a une attaque imprévue 3. que la durée EstIntouchable est arrivée à 3, alors il lance son attaque imprévue
+            {
+                Console.WriteLine($"{ennemi.Nom} est acculé...\n");
+                attaqueChoisie = ennemi.AttaqueImprevue;
+                return true;
+            }
+            
+            return false;
         }
         
         public static void AppliquerEffets(Personnage p)

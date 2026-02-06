@@ -21,7 +21,7 @@ namespace Game.Fight
                 return;
             }
 
-            if (EffectsManager.CheckIfAccule(turnPers,ennemi))
+            if (EffectsManager.CheckIfAccule(turnPers, ennemi))
             {
                 shouldEndTurn = true;
                 return;
@@ -102,6 +102,7 @@ namespace Game.Fight
                         colonne = (colonne + 1) % colonnes;
                         break;
                     case ConsoleKey.Enter:
+                        if (grilleAttaques[ligne, colonne] != null)
                         choisi = true;
                         break;
                 }
@@ -123,47 +124,33 @@ namespace Game.Fight
 
         public static void TourEnnemi(Personnage ennemi, Personnage joueur)
         {
-            if (ennemi.EstEnglue)
-            {
-                if (!ennemi.PeutAgirCeTour)
-                {
-                    Console.WriteLine($"{ennemi.Nom} est englué. Il ne peut plus bouger !!\n");
-                    Console.ReadKey();
-                    return; // attaque bloquée ici : on appelle PeutAgirCeTour(), si la méthode retourne false alors on quitte le tour et l'attaque n'ajamais lieu
-                }
-                else
-                {
-                    Console.WriteLine($"{ennemi.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
-                    Console.ReadKey();
-                }
-            }
-
+            
 
             Console.WriteLine($"\nC'est au tour de {ennemi.Nom}:\n\n");
 
-            Attaque attaqueChoisie;
-
-            // Ennemi est acculé, il doit utiliser son attaque imprévue:
-            if (ennemi.EstAccule(joueur))
+            // évite le crash si l'ennemi n'a pas d'attaque
+            
+            if (ennemi.Attaques == null || ennemi.Attaques.Count == 0)
             {
-                ennemi.DureeEstIntouchable++;
-            }
-            else
-            {
-                ennemi.DureeEstIntouchable = 0;
+                return;
             }
 
-            if (ennemi.EstAccule(joueur) && ennemi.AttaqueImprevue != null && ennemi.DureeEstIntouchable >= 3) // si 1. l'ennemi n'a pas d'attaques capable de toucher le joueur 2. qu'il a une attaque imprévue 3. que la durée EstIntouchable est arrivée à 3, alors il lance son attaque imprévue
-            {
-                Console.WriteLine($"{ennemi.Nom} est acculé...\n");
-                attaqueChoisie = ennemi.AttaqueImprevue;
+            bool shouldEndTurn = false;
 
-            }
-            else
+            CheckEffects(ennemi, joueur, ref shouldEndTurn);
+
+            if (shouldEndTurn)
             {
-                attaqueChoisie = ennemi.Attaques[rnd.Next(ennemi.Attaques.Count)];      // sinon, il lance une attaque random de son set d'attaques
+                return;
             }
 
+            Attaque attaqueChoisie = ennemi.Attaques[rnd.Next(ennemi.Attaques.Count)];      // sinon, il lance une attaque random de son set d'attaques
+            
+            // évite le crash si l'attaque choisie est null
+            if (attaqueChoisie == null)
+            {
+                return;
+            }
 
             ennemi.LancerAttaque(joueur, attaqueChoisie);
 
