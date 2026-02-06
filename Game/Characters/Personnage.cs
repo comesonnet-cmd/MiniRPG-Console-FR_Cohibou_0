@@ -107,7 +107,7 @@ namespace Game.Characters
 
             if (attaque.Effet == EffectsManager.EFFECT.ImmuGivre || attaque.Effet == EffectsManager.EFFECT.ProtectVeneneux)
             {
-                // Si les effets de l'attaque sont ImmuGivre ou ProtectVeneneux, on affiche la phrase ci-dessous car le joueur d'auto-cible 
+                // Si les effets de l'attaque sont ImmuGivre ou ProtectVeneneux, on affiche la phrase ci-dessous car le joueur s'auto-cible 
                 Console.WriteLine($"Ah ! {Nom} a lancé {attaque.Nom} ({attaque.Type}) !\n");
             }
             else if (attaque.Type == Element.TYPE.Veneneux && cible.EstProtege)
