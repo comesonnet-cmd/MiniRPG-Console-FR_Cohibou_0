@@ -30,7 +30,7 @@ namespace Game
                 Type = Element.TYPE.Automne,
                 PointsDeVie = 100,
                 Attaques = new List<Attaque> { AtkManager.GetAtkByName("Feuille rouge"), AtkManager.GetAtkByName("Feuille dorée"), AtkManager.GetAtkByName("Jet de pomme de pin"), AtkManager.GetAtkByName("Jet de bogue") },
-                AttaqueImprevue = ImpCohibou,
+                AttaqueImprevue = AtkManager.GetAtkByName("égarement"),
                 Vitesse = 4
 
             };
@@ -79,11 +79,11 @@ namespace Game
             
             // Définition de la grille pour le choix du personnage 2x2:
          
-
+            var perso = CreerTousLesPersonnages();
             Personnage[,] grillePersonnages = new Personnage[2, 2]               // tableau multidimensionnel (ici 2 lignes × 2 colonnes). 
             {
-                { Cohibou,         SbireSuintant},                                      // La première paire { Cohibou, SbireSuintant } est la ligne 0 (col 0 et col 1).
-                { SbirePetrole,    Grelon}                                         // La seconde paire est la ligne 1.
+                { perso[0],         perso[1]},                                      // La première paire { Cohibou, SbireSuintant } est la ligne 0 (col 0 et col 1).
+                { perso[2],         perso[3]}                                         // La seconde paire est la ligne 1.
             };                                                                  // Accès : grillePersonnages[i, j] où i = ligne (0..1), j = colonne (0..1).
 
             int ligne = 0;                                                      // ligne et colonne sont les indices actuels du curseur (commencent sur le premier élément : Cohibou).
