@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using MiniRPG_Console_FR_Cohibou_0.Characters;
 using MiniRPG_Console_FR_Cohibou_0.Utils;
 using Game.Fight;
 using Game.Effects;
+using Game.Characters;
+using Game.Attacks;
+using Game.Elements;
 
 namespace Game
 {
@@ -13,24 +15,21 @@ namespace Game
     {
         private static Random rnd = new Random();
 
+        // 1. Initialisation des personnages:
 
-
-        public static void LancerJeu()
+        public static List<Personnage> CreerTousLesPersonnages()
         {
-            
 
-
-
-            //  Étape 1 : créer les personnages jouables
+            // Création des personnages jouables
 
             List<Personnage> tousLesPersonnages = new List<Personnage>();
 
             Personnage Cohibou = new Personnage
             {
                 Nom = "Cohibou",
-                Type = TypeElement.Automne,
+                Type = Element.TYPE.Automne,
                 PointsDeVie = 100,
-                Attaques = new List<Attaque> { feuilleRouge, feuilleDoree, jetPommeDePin, jetDeBogue },
+                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Feuille rouge"), AtkManager.GetAtkByName("Feuille dorée"), AtkManager.GetAtkByName("Jet de pomme de pin"), AtkManager.GetAtkByName("Jet de bogue") },
                 AttaqueImprevue = ImpCohibou,
                 Vitesse = 4
 
@@ -39,9 +38,9 @@ namespace Game
             Personnage SbirePetrole = new Personnage
             {
                 Nom = "Sbire pétrole",
-                Type = TypeElement.Penombre,
+                Type = Element.TYPE.Penombre,
                 PointsDeVie = 50,
-                Attaques = new List<Attaque> { conversionNocturne, obscureMelasse },
+                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Conversion nocturne"), AtkManager.GetAtkByName("Obscure mélasse") },
                 Vitesse = 5
 
             };
@@ -49,18 +48,18 @@ namespace Game
             Personnage SbireSuintant = new Personnage
             {
                 Nom = "Sbire suintant",
-                Type = TypeElement.Veneneux,
+                Type = Element.TYPE.Veneneux,
                 PointsDeVie = 50,
-                Attaques = new List<Attaque> { methyleneGun, poche },
+                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Méthylène gun"), AtkManager.GetAtkByName("Poche") },
                 Vitesse = 3
             };
 
             Personnage Grelon = new Personnage
             {
                 Nom = "Grêlon",
-                Type = TypeElement.Givre,
+                Type = Element.TYPE.Givre,
                 PointsDeVie = 50,
-                Attaques = new List<Attaque> { geleeDouce, martelage },
+                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Gelée douce"), AtkManager.GetAtkByName("Martelage") },
                 Vitesse = 2
             };
 
@@ -69,12 +68,22 @@ namespace Game
             tousLesPersonnages.Add(SbirePetrole);
             tousLesPersonnages.Add(Grelon);
 
-            // Définir la grille pour le choix du personnages 2x2:
+            return tousLesPersonnages;
+        }
+
+        public static void LancerJeu()
+        {
+           
+
+            // 2. Choix du personnage:
+            
+            // Définition de la grille pour le choix du personnage 2x2:
+         
 
             Personnage[,] grillePersonnages = new Personnage[2, 2]               // tableau multidimensionnel (ici 2 lignes × 2 colonnes). 
             {
-            { Cohibou,         SbireSuintant},                                      // La première paire { Cohibou, SbireSuintant } est la ligne 0 (col 0 et col 1).
-            { SbirePetrole,    Grelon}                                         // La seconde paire est la ligne 1.
+                { Cohibou,         SbireSuintant},                                      // La première paire { Cohibou, SbireSuintant } est la ligne 0 (col 0 et col 1).
+                { SbirePetrole,    Grelon}                                         // La seconde paire est la ligne 1.
             };                                                                  // Accès : grillePersonnages[i, j] où i = ligne (0..1), j = colonne (0..1).
 
             int ligne = 0;                                                      // ligne et colonne sont les indices actuels du curseur (commencent sur le premier élément : Cohibou).
@@ -92,13 +101,13 @@ namespace Game
                 // Calculer la largeur maximale des noms + 2 espaces
                 int maxLength = grillePersonnages.Cast<Personnage>().Max(p => p.Nom.Length) + 2;
 
-                // grillePersonnages.Cast<Personnage>() : transforme la grille 2×2 en liste pour pouvoir utiliser Max().                                        
-                // PadRight(maxLength) : ajoute des espaces après chaque nom pour que toutes les colonnes aient la même largeur.
-                //.Max(p => p.Nom.Length) - Max() parcourt chaque élément de la séquence et renvoie la valeur maximale.
-                //                        - Ici : p => p.Nom.Length indique qu’on veut la longueur du nom de chaque personnage.
-                //                        - Donc, Max() va calculer le nom le plus long parmi tous les personnages. Ici: 14
-                //                        - On ajoute 2 caractères d’espace pour séparer les colonnes dans l’affichage: Donc maxLength = 14 + 2 = 16.
-
+                /*  grillePersonnages.Cast<Personnage>() : transforme la grille 2×2 en liste pour pouvoir utiliser Max().                                        
+                    PadRight(maxLength) : ajoute des espaces après chaque nom pour que toutes les colonnes aient la même largeur.
+                    .Max(p => p.Nom.Length) - Max() parcourt chaque élément de la séquence et renvoie la valeur maximale.
+                                        - Ici : p => p.Nom.Length indique qu’on veut la longueur du nom de chaque personnage.
+                                        - Donc, Max() va calculer le nom le plus long parmi tous les personnages. Ici: 14
+                                        - On ajoute 2 caractères d’espace pour séparer les colonnes dans l’affichage: Donc maxLength = 14 + 2 = 16.
+                */
 
                 // Afficher la grille avec le curseur                                               
                 for (int i = 0; i < 2; i++)
@@ -174,7 +183,7 @@ namespace Game
 
             }
 
-            // On crée une liste pour mettre les personnages non-choisis par le joueur dedans et les définir en tant qu'ennemis
+            // 3. Création d'une liste pour y mettre les personnages non-choisis par le joueur et les définir en tant qu'ennemis:
 
             List<Personnage> ennemis = new List<Personnage>();
             for (int i = 0; i < 2; i++)
@@ -190,7 +199,7 @@ namespace Game
             Console.WriteLine($"\n\nOh! Un ennemi apparaît!\n\nMais..? C'est {ennemi.Nom} ?!\n\nLe bougre vous attaque !");
             Console.ReadLine();
 
-            // COMMENCER LA BOUCLE DE COMBAT
+            // 4. COMMENCER LA BOUCLE DE COMBAT
 
             bool joueurCommence = joueur.Vitesse >= ennemi.Vitesse;     // ordre de tour
 

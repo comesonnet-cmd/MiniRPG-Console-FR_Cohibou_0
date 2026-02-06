@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading;
-using MiniRPG_Console_FR_Cohibou_0.Characters;
 using Game;
 using Game.Effects;
+using Game.Characters;
+using Game.Attacks;
+
+
 
 namespace Game.Fight
 {
@@ -27,39 +30,18 @@ namespace Game.Fight
         public static void TourJoueur(Personnage joueur, Personnage ennemi)
         {
 
-            private bool shouldEndTurn = false;
+            bool shouldEndTurn = false;
 
-            CheckEffects(joueur, ennemi, ref shouldEndTurn)
-            {
+            CheckEffects(joueur, ennemi, ref shouldEndTurn);
+            
                  if (shouldEndTurn)
                  {
                      return;
                  }
-            }
-
-            if (joueur.EstEnglue)
-            {
-                if (!joueur.PeutAgirCeTour)
-                {
-                    Console.WriteLine($"{joueur.Nom} est englué. Il ne peut plus bouger !!\n");
-                    Console.ReadKey();
-                    return;
-                }                        // Si le joueur ne peut pas agir ce tour, on sort de Tour Joueur
-                else
-                {
-                    Console.WriteLine($"{joueur.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
-                    Console.ReadKey();
-                }
-            }
-
-
-
-
-            Console.Clear();
-            Thread.Sleep(500); // pause 0.5 seconde
-
+            
            
-
+            Console.Clear();
+            Thread.Sleep(500); // pause 0.5 seconde           
 
 
             // Affiche le menu d'ataques

@@ -121,7 +121,7 @@ namespace Game.Attacks
                                                       
         };
 
-      public static Attaque GetAtkByName(string nameAtk)
+      public static Attaque? GetAtkByName(string nameAtk)           // le ? indique que la méthode peut soit retourner une attaque, soit null
         {
             for(int i = 0; i < ListAttaques.Length; i++)
             {
@@ -129,7 +129,10 @@ namespace Game.Attacks
                 {
                     return ListAttaques[i];
                 }
+
             }
+
+            return null;
         }  
         
 

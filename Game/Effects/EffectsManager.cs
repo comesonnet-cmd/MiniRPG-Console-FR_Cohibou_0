@@ -1,5 +1,5 @@
 ﻿using System;
-using MiniRPG_Console_FR_Cohibou_0.Characters;
+using Game.Characters;
 
 namespace Game.Effects
 {
@@ -30,6 +30,21 @@ namespace Game.Effects
             else
             {
                 p.PeutAgirCeTour = true;
+            }
+
+            if (p.EstEnglue)
+            {
+                if (!p.PeutAgirCeTour)
+                {
+                    Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
+                    Console.ReadKey();
+                    return;
+                }                        // Si le joueur ne peut pas agir ce tour, on sort de Tour Joueur
+                else
+                {
+                    Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
+                    Console.ReadKey();
+                }
             }
         }
 
