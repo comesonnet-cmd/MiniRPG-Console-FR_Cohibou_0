@@ -12,7 +12,7 @@ namespace Game.Attacks
     public class Attaque
     {
         public string Nom;
-        public Element.TYPE Type;
+        internal Element.TYPE Type;
         public int Puissance;
 
         public EffectsManager.EFFECT Effet = EffectsManager.EFFECT.Aucun;   // Par défaut : aucun effet

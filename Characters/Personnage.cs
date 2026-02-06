@@ -1,4 +1,5 @@
 ﻿using Game;
+using Game.Elements;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +10,7 @@ namespace MiniRPG_Console_FR_Cohibou_0.Characters
         private static Random rnd = new Random(); 
 
         public string Nom;
-        public TypeElement Type;
+        private Element.TYPE Type;
         public int PointsDeVie;
         public List<Attaque> Attaques = new List<Attaque>();
         public int Vitesse;
