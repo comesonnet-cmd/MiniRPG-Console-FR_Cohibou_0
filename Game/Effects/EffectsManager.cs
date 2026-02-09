@@ -22,25 +22,50 @@ namespace Game.Effects
 
         public static bool CheckIfEnglue(Personnage p)
         {
-            // Engluage : une chance sur deux d'agir ou de ne rien faire
+            // // Engluage : une chance sur deux d'agir ou de ne rien faire
 
-            if (p.EstEnglue && !p.PeutAgirCeTour)
-            {
-                bool para = rnd.Next(2) == 0;       // Génère soit 0, soit 1 (pile ou face) Si le résultat est 0 → para = true = paralysé Si le résultat est 1 → para = false = peut bouger
-                p.PeutAgirCeTour = !para;           // On Définie que peutAgirCeTour est true quand para est false
+            // if (p.EstEnglue && !p.PeutAgirCeTour)
+            // {
+            //     bool para = rnd.Next(2) == 0;       // Génère soit 0, soit 1 (pile ou face) Si le résultat est 0 → para = true = paralysé Si le résultat est 1 → para = false = peut bouger
+            //     p.PeutAgirCeTour = !para;           // On Définie que peutAgirCeTour est true quand para est false
+            //     Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
+            //     Console.ReadKey();
+            //                         // attaque bloquée ici : on appelle PeutAgirCeTour(), si la méthode retourne false alors on quitte le tour et l'attaque n'a jamais lieu 
+            //     return true;
+            // }
+            // else
+            // {
+            //     p.PeutAgirCeTour = true;
+            //         Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
+            //         Console.ReadKey();
+            // }
+
+            // return false;
+
+//_____________________________________
+
+            //Si j'ai bien compris cette fonction CheckIfEnglue est appelée quand le personnage qui doit jouer est englué.
+            //Si le perso est englué il a une chance sur deux de jouer.
+                //à moins que quelque chose m'échappe, même avec la version refactor v2, la variable PeutAgirCeTour ne sert pas ici. 
+                // le if else ne sert pas non plus..?
+                
+            //Engluage : une chance sur deux d'agir ou de ne rien faire
+                //Si on appelle cette fonction, c'est qu'on a déjà vérifié que le personnage est englué (dans le TurnManager). Donc pas besoin de re vérifier
+            
+            //Une chance sur deux d'agir
+            bool para = rnd.Next(2) == 0;
+
+            //On affiche un msg différent en fonction de la paralysie
+            if(para) {
                 Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
-                Console.ReadKey();
-                                    // attaque bloquée ici : on appelle PeutAgirCeTour(), si la méthode retourne false alors on quitte le tour et l'attaque n'a jamais lieu 
-                return true;
-            }
-            else
-            {
-                p.PeutAgirCeTour = true;
-                    Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
-                    Console.ReadKey();
+            } else {
+                Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
             }
 
-            return false;
+            Console.ReadKey();
+
+                //Return true si il est paralysé / false si il peut jouer
+            return para;
            
         }
 
