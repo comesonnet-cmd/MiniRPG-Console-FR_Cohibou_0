@@ -139,7 +139,7 @@ namespace Game.Fight
 
 
         //Sert à verifier tout les effets ou choses qui pourrait faire que le joueur dont c'est le tour ne joue pas. S'il ne peut pas joueur on retourne false, si toute les vérifications sont faite on retourne true -> il peut jouer.
-        public static void CanPlayThisTurn(Personnage turnPers, Personnage ennemi)
+        public static bool CanPlayThisTurn(Personnage turnPers, Personnage ennemi)
         {
             if(turnPers.EstEnglue()) {   
                 if (EffectsManager.CheckIfEnglue(turnPers))
