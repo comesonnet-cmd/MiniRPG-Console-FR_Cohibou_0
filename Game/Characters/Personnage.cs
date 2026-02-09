@@ -19,7 +19,7 @@ namespace Game.Characters
         public int PointsDeVie;
         public List<Attaque> Attaques = new List<Attaque>();
         public int Vitesse;
-        public bool PeutAgirCeTour = true;
+        
         public Attaque AttaqueImprevue;
 
         // Durées pour les effets temporaires

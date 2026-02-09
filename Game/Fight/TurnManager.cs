@@ -13,31 +13,12 @@ namespace Game.Fight
     {
         private static Random rnd = new Random();
 
-        public static void CheckEffects(Personnage turnPers, Personnage ennemi, ref bool shouldEndTurn)
-        {
-            if (EffectsManager.CheckIfEnglue(turnPers))
-            {
-                shouldEndTurn = true;
-                return;
-            }
-
-            if (EffectsManager.CheckIfAccule(turnPers, ennemi))
-            {
-                shouldEndTurn = true;
-                return;
-            }
-        }
+        
         public static void TourJoueur(Personnage joueur, Personnage ennemi)
         {
 
-            bool shouldEndTurn = false;
-
-            CheckEffects(joueur, ennemi, ref shouldEndTurn);
-            
-                 if (shouldEndTurn)
-                 {
-                     return;
-                 }
+            if (!PeutJouerCeTour(joueur, ennemi)) return;
+                             
             
            
             Console.Clear();
@@ -135,14 +116,7 @@ namespace Game.Fight
                 return;
             }
 
-            bool shouldEndTurn = false;
-
-            CheckEffects(ennemi, joueur, ref shouldEndTurn);
-
-            if (shouldEndTurn)
-            {
-                return;
-            }
+          
 
             Attaque attaqueChoisie = ennemi.Attaques[rnd.Next(ennemi.Attaques.Count)];      // sinon, il lance une attaque random de son set d'attaques
             
@@ -159,6 +133,27 @@ namespace Game.Fight
 
         }
 
+        // Vérifie tous les effets qui pourraient empêcher le joueur dont c'est le tour de jouer. S'il ne peut pas jouer => false; si toutes les vérifications sont faites, on retourne true => il peut jouer
+        public static bool PeutJouerCeTour(Personnage turnPers, Personnage ennemi)
+        {
+            if (turnPers.EstEnglue)
+            {
+                if (EffectsManager.CheckIfEnglue(turnPers))
+                {
+                    return false;
+                }
+            }
+
+            if (turnPers.EstAccule(ennemi))
+            {
+                if (EffectsManager.CheckIfEnglue(turnPers))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
        
     }
 }

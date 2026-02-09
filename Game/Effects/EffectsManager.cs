@@ -24,23 +24,22 @@ namespace Game.Effects
         {
             // Engluage : une chance sur deux d'agir ou de ne rien faire
 
-            if (p.EstEnglue && !p.PeutAgirCeTour)
+           
+            bool para = rnd.Next(2) == 0;       // Génère soit 0, soit 1 (pile ou face) Si le résultat est 0 → para = true = paralysé Si le résultat est 1 → para = false = peut bouger
+                
+            if (para)
             {
-                bool para = rnd.Next(2) == 0;       // Génère soit 0, soit 1 (pile ou face) Si le résultat est 0 → para = true = paralysé Si le résultat est 1 → para = false = peut bouger
-                p.PeutAgirCeTour = !para;           // On Définie que peutAgirCeTour est true quand para est false
                 Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
-                Console.ReadKey();
-                                    // attaque bloquée ici : on appelle PeutAgirCeTour(), si la méthode retourne false alors on quitte le tour et l'attaque n'a jamais lieu 
-                return true;
-            }
+              
+            }                                                   
             else
-            {
-                p.PeutAgirCeTour = true;
+            {              
                     Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
-                    Console.ReadKey();
+                   
             }
 
-            return false;
+            Console.ReadKey();
+            return para;            // retourne true si paralisé, false s'il peut agir
            
         }
 

@@ -1,4 +1,5 @@
-﻿using Game;
+﻿using System;
+using Game;
 using MiniRPG_Console_FR_Cohibou_0;
 
 namespace MiniRPG_Console_FR_Cohibou_0
@@ -9,8 +10,10 @@ namespace MiniRPG_Console_FR_Cohibou_0
         {
             while (true)
             {
-                GameManager.LancerJeu();
+               GameManager.LancerJeu();
+                
             }
+
         }
     }
 }
