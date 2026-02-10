@@ -88,7 +88,7 @@ namespace Game.Attacks
                 Puissance = 0,                          // pas de dégâts directs
                 Effet = Effects.EffectsManager.EFFECT.PochetteSurprise,     // Tire à pile ou face, si pile = "Poche vide", n'inflige aucun dégât, si face = "Smog bleu", enlève 10 PV.
                 TirePileFace = true,
-                AttaqueBonus = AtkManager.GetAtkByName("Smog bleu")     // "Smog Bleu" (attaque à déclencher si Face)
+                AttaqueBonus = AtkManager.GetAtkByName("Smog bleu")     // "Smog bleu" (attaque à déclencher si Face)
              },
 
             // 4) Attaques du Sbire Pétrole

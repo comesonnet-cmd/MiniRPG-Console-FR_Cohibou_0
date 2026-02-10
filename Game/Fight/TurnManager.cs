@@ -105,7 +105,8 @@ namespace Game.Fight
 
         public static void TourEnnemi(Personnage ennemi, Personnage joueur)
         {
-            
+
+            if (!PeutJouerCeTour(ennemi, joueur)) return;
 
             Console.WriteLine($"\nC'est au tour de {ennemi.Nom}:\n\n");
 

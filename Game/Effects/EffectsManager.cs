@@ -43,49 +43,28 @@ namespace Game.Effects
            
         }
 
-        public static bool CheckIfAccule(Personnage joueur, Personnage ennemi)
+        public static bool CheckIfAccule(Personnage turnPers, Personnage ennemi)
         {
-            if (joueur.EstAccule(ennemi))           // Si le joueur est acculé par l'ennemi , on initialise la durée EstIntouchable
+            if (turnPers.EstAccule(ennemi))           // Si le joueur est acculé par l'ennemi , on initialise la durée EstIntouchable
             {
-                joueur.DureeEstIntouchable++;
+                turnPers.DureeEstIntouchable++;
             }
             else                                    // Sinon, la durée EstIntouchable est égale à 0
             {
-                joueur.DureeEstIntouchable = 0;
+                turnPers.DureeEstIntouchable = 0;
             }
 
-            if (joueur.EstAccule(ennemi) && joueur.AttaqueImprevue != null && joueur.DureeEstIntouchable >= 3)      // Si 1. le joueur est acculé par l'ennemi 2. il a une attaque imprévue 3. que la durée EstIntouchable est arrivée à 3 (tours), on lance l'attaque imprévue
+            if (turnPers.EstAccule(ennemi) && turnPers.AttaqueImprevue != null && turnPers.DureeEstIntouchable >= 3)      // Si 1. le joueur est acculé par l'ennemi 2. il a une attaque imprévue 3. que la durée EstIntouchable est arrivée à 3 (tours), on lance l'attaque imprévue
             {
                 Console.Clear();
-                Console.WriteLine($"{joueur.Nom} n'a plus d'autre choix...\n");
+                Console.WriteLine($"{turnPers.Nom} n'a plus d'autre choix...\n");
                 Console.WriteLine();
-                Console.WriteLine($"> {joueur.AttaqueImprevue.Nom}");
+                Console.WriteLine($"> {turnPers.AttaqueImprevue.Nom}");
                 Console.WriteLine();
 
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) { }       // Tant que l’utilisateur n’appuie pas sur Entrée, on ne fait absolument rien et on attend.
 
-                joueur.LancerAttaque(ennemi, joueur.AttaqueImprevue);
-                return true;
-            }
-
-            
-            // Ennemi est acculé, il doit utiliser son attaque imprévue:
-
-            Attaque attaqueChoisie;
-
-            if (ennemi.EstAccule(joueur))
-            {
-                ennemi.DureeEstIntouchable++;
-            }
-            else
-            {
-                ennemi.DureeEstIntouchable = 0;
-            }
-
-            if (ennemi.EstAccule(joueur) && ennemi.AttaqueImprevue != null && ennemi.DureeEstIntouchable >= 3) // si 1. l'ennemi n'a pas d'attaques capable de toucher le joueur 2. qu'il a une attaque imprévue 3. que la durée EstIntouchable est arrivée à 3, alors il lance son attaque imprévue
-            {
-                Console.WriteLine($"{ennemi.Nom} est acculé...\n");
-                attaqueChoisie = ennemi.AttaqueImprevue;
+                turnPers.LancerAttaque(ennemi, turnPers.AttaqueImprevue);
                 return true;
             }
             

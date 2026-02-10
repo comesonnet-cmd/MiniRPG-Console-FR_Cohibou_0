@@ -14,16 +14,33 @@ namespace Game
     public static class GameManager
     {
        
-        
-        
+              
         
         private static Random rnd = new Random();
 
-        
+        /*// On crée un bool run pour revenir au menu de sélection des personnages si on presse la touche échap:
+        public static bool run()
+        {
+
+            ConsoleKeyInfo BackToMenu;
+
+            while (true)
+            {
+                LancerJeu();
+
+                BackToMenu = Console.ReadKey(true);     // BackToMenu attend une touche, ne l'affiche pas, et stock la touche pressée
+
+                if (BackToMenu.Key == ConsoleKey.Escape)
+                {
+                    return false;
+                }
+            }
+        } */
         public static void LancerJeu()
         {
 
            
+
             // 2. Choix du personnage:
 
             // Définition de la grille pour le choix du personnage 2x2:
@@ -144,9 +161,111 @@ namespace Game
                 }
             }
 
-            Personnage ennemi = ennemis[rnd.Next(ennemis.Count)];           // ennemi random parmi les ennemis
-            Console.WriteLine($"\n\nOh! Un ennemi apparaît!\n\nMais..? C'est {ennemi.Nom} ?!\n\nLe bougre vous attaque !");
-            Console.ReadLine();
+            /* Si on veut avoir un ennemi random parmi les ennemis:
+             Personnage ennemi = ennemis[rnd.Next(ennemis.Count)];   */
+
+            // Sinon, on affiche la grille des personnages non-choisis pour le choix de l'ennemi:
+            var PersoEnnemi = ennemis;
+            
+            Personnage[,] choixEnnemi = new Personnage[2, 2]               // tableau multidimensionnel (ici 2 lignes × 2 colonnes). 
+           {
+                { PersoEnnemi[0],         PersoEnnemi[1]},                                     
+                { PersoEnnemi[2],         null}                                         
+           };                                                                 
+
+            int ligneChEn = 0;                                                      // ligne et colonne sont les indices actuels du curseur (commencent sur le premier élément : Cohibou).
+            int colonneChEn = 0;
+            bool choisi2 = false;                                                // choisi2 indique si l’utilisateur a appuyé sur Entrée pour valider.
+
+            // Boucle principale d’affichage / gestion des touches:
+
+            while (!choisi2)
+            {
+                Console.Clear();                                                // Console.Clear() efface l’écran pour redessiner la grille proprement à chaque itération (donc le curseur "se déplace").
+                Console.WriteLine("Qui est ton ennemi?\n");
+
+
+                // Calculer la largeur maximale des noms + 2 espaces
+                int maxLength = choixEnnemi.Cast<Personnage>()
+                                                            .Where(pe => pe != null)    // pour ignorer les cases vides car case null existante
+                                                            .Max(pe => pe.Nom.Length) + 2; // on ajoute deux espace après le nom le plus long pour aligner le tableau
+
+                
+
+                // Afficher la grille avec le curseur                                               
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if ( i == ligneChEn && j == colonneChEn)                         //  → on affiche "> " devant le nom pour montrer la sélection actuelle.
+                            Console.Write("> ");  // CURSEUR
+                        else
+                            Console.Write("  ");                                // Sinon on met deux espaces " " pour aligner.
+
+                        // Vérification null
+                        
+                        if (choixEnnemi[i, j] != null)
+                        
+                            Console.Write($"{choixEnnemi[i, j].Nom.PadRight(maxLength)} ");  // on affiche le nom si différent de null
+                        
+                        else
+                        
+                            Console.Write(new string(' ', maxLength) + " ");        // si null, on crée un espace vide 
+                        
+                              
+                    }
+                    Console.WriteLine();
+                }
+
+                // Lire la touche appuyée
+                ConsoleKeyInfo key = Console.ReadKey(true);                     // Après affichage, Console.ReadKey(true) attend une touche sans l’afficher (true = key interceptée).
+                
+
+                switch (key.Key)                                                // switch (key.Key) regarde quelle touche a été pressée 
+                {
+                    case ConsoleKey.UpArrow:                                    
+                        int newLigne = (ligneChEn - 1 + 2) % 2;                 // on calcule la nouvelle ligne en remontant
+                        if (choixEnnemi[newLigne, colonneChEn] != null)         // Déplace le curseur uniquement si la case ciblée contient un ennemi
+                            ligneChEn = newLigne;
+                        break;      
+                        
+                    case ConsoleKey.DownArrow:
+                        newLigne= (ligneChEn + 1) % 2;
+                        if (choixEnnemi[newLigne, colonneChEn] != null)
+                            ligneChEn= newLigne;
+                        break;
+
+                    case ConsoleKey.LeftArrow:                                  
+                        int newCol = (colonneChEn - 1 + 2) % 2;
+                        if (choixEnnemi[ligneChEn, newCol] != null)
+                            colonneChEn = newCol;
+                        break;
+
+                    case ConsoleKey.RightArrow:
+                        newCol = (colonneChEn + 1) % 2;
+                        if (choixEnnemi[ligneChEn, newCol] != null)
+                            colonneChEn = newCol;
+                        break;
+
+                    case ConsoleKey.Enter:    
+                       
+                        choisi2 = true; // choix validé
+                        break;
+                }
+            }
+
+
+            // Récupérer le personnage Ennemi choisi
+
+            Personnage ennemi = choixEnnemi[ligneChEn, colonneChEn];
+            
+
+            
+                Console.WriteLine($"\n\nOh! Un ennemi apparaît!\n\nMais..? C'est {ennemi.Nom} ?!\n\nLe bougre vous attaque !");
+                Console.ReadLine();
+            
+                 
+                       
 
             // 4. COMMENCER LA BOUCLE DE COMBAT
 
