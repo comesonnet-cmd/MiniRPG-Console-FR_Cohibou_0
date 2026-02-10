@@ -13,73 +13,22 @@ namespace Game
 {
     public static class GameManager
     {
+       
+        
+        
+        
         private static Random rnd = new Random();
 
-        // 1. Initialisation des personnages:
-
-        public static List<Personnage> CreerTousLesPersonnages()
-        {
-
-            // Création des personnages jouables
-
-            List<Personnage> tousLesPersonnages = new List<Personnage>();
-
-            Personnage Cohibou = new Personnage
-            {
-                Nom = "Cohibou",
-                Type = Element.TYPE.Automne,
-                PointsDeVie = 100,
-                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Feuille rouge"), AtkManager.GetAtkByName("Feuille dorée"), AtkManager.GetAtkByName("Jet de pomme de pin"), AtkManager.GetAtkByName("Jet de bogue") },
-                AttaqueImprevue = AtkManager.GetAtkByName("égarement"),
-                Vitesse = 4
-
-            };
-
-            Personnage SbirePetrole = new Personnage
-            {
-                Nom = "Sbire pétrole",
-                Type = Element.TYPE.Penombre,
-                PointsDeVie = 50,
-                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Conversion nocturne"), AtkManager.GetAtkByName("Obscure mélasse") },
-                Vitesse = 5
-
-            };
-
-            Personnage SbireSuintant = new Personnage
-            {
-                Nom = "Sbire suintant",
-                Type = Element.TYPE.Veneneux,
-                PointsDeVie = 50,
-                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Méthylène gun"), AtkManager.GetAtkByName("Poche") },
-                Vitesse = 3
-            };
-
-            Personnage Grelon = new Personnage
-            {
-                Nom = "Grêlon",
-                Type = Element.TYPE.Givre,
-                PointsDeVie = 50,
-                Attaques = new List<Attaque> { AtkManager.GetAtkByName("Gelée douce"), AtkManager.GetAtkByName("Martelage") },
-                Vitesse = 2
-            };
-
-            tousLesPersonnages.Add(Cohibou);
-            tousLesPersonnages.Add(SbireSuintant);
-            tousLesPersonnages.Add(SbirePetrole);
-            tousLesPersonnages.Add(Grelon);
-
-            return tousLesPersonnages;
-        }
-
+        
         public static void LancerJeu()
         {
-           
 
+           
             // 2. Choix du personnage:
-            
+
             // Définition de la grille pour le choix du personnage 2x2:
-         
-            var perso = CreerTousLesPersonnages();
+
+            var perso = PersonnagesManager.CreerTousLesPersonnages();
             Personnage[,] grillePersonnages = new Personnage[2, 2]               // tableau multidimensionnel (ici 2 lignes × 2 colonnes). 
             {
                 { perso[0],         perso[1]},                                      // La première paire { Cohibou, SbireSuintant } est la ligne 0 (col 0 et col 1).
@@ -232,7 +181,17 @@ namespace Game
 
                 Console.WriteLine("\n Fin du tour");
                 Console.ReadKey();
+
+
+              
             }
         }
+
+
+
+
+
+
+
     }
 }

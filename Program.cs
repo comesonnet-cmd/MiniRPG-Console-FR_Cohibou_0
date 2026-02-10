@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Cryptography.X509Certificates;
 using Game;
 using MiniRPG_Console_FR_Cohibou_0;
 
@@ -8,12 +10,12 @@ namespace MiniRPG_Console_FR_Cohibou_0
     {
         static void Main()
         {
-            while (true)
+            
+           while (true)
             {
-               GameManager.LancerJeu();
-                
+                GameManager.LancerJeu();
             }
-
+                           
         }
     }
 }
