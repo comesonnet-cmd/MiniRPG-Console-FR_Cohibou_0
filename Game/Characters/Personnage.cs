@@ -119,7 +119,7 @@ namespace Game.Characters
             }
             else if (attaque.Nom == "Smog bleu")
             {
-                // Si l'attaque est Smog Bleu, on n'affiche pas le message car déjàaffiché 
+                // Si l'attaque est Smog Bleu, on n'affiche pas le message car déjà affiché 
                 Console.WriteLine();
             }
             else

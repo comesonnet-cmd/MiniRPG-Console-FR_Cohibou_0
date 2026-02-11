@@ -12,14 +12,22 @@ namespace Game.Attacks
 {
     public class Attaque
     {
-        public string Nom;
-        internal Element.TYPE Type;
-        public int Puissance;
+        public string Nom {  get; set; }
+        internal Element.TYPE Type { get; set; }    
+        public int Puissance { get; set; }
 
-        public EffectsManager.EFFECT Effet = EffectsManager.EFFECT.Aucun;   // Par défaut : aucun effet
+        public Effects.EffectsManager.EFFECT Effet { get; set; }
         // Tire à pile ou face
-        public bool TirePileFace = false;           // true si l'effet doit tirer à pile ou face 
-        public Attaque AttaqueBonus = null;         // attaque à lancer si Face
+        public bool TirePileFace { get; set; }
+
+        // On crée un delegate pour récupérer l'attaque bonus dynamiquement
+        public Func<Attaque?>? AttaqueBonusFunc { get; set; }
+
+        // La propriété AttaqueBonus retourne l'attaque bonus réelle si le delegate existe bien, sinon null:
+
+        public Attaque? AttaqueBonus => AttaqueBonusFunc?.Invoke(); // Invoke() appelle le delegate stocké dans AttaqueBonusFunc
+
+
         public Attaque AttaqueImprevue;
     }
 }

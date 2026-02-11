@@ -179,6 +179,6 @@ namespace Game.Fight
             return true;            // si le personnage n'était pas englué au départ, il est libre
 
         }
-       
+        
     }
 }

@@ -84,7 +84,7 @@ namespace Game.Effects
             }
             else
             {
-                Console.WriteLine($"{turnPers.Nom} tente de s'extriper de la mélasse... Avec succès!\n");
+                Console.WriteLine($"{turnPers.Nom} tente de s'extirper de la mélasse... Avec succès!\n");
             }
 
             Console.ReadKey();

@@ -88,7 +88,18 @@ namespace Game.Attacks
                 Puissance = 0,                          // pas de dégâts directs
                 Effet = Effects.EffectsManager.EFFECT.PochetteSurprise,     // Tire à pile ou face, si pile = "Poche vide", n'inflige aucun dégât, si face = "Smog bleu", enlève 10 PV.
                 TirePileFace = true,
-                AttaqueBonus = AtkManager.GetAtkByName("Smog bleu")     // "Smog bleu" (attaque à déclencher si Face)
+                // On uitilise un delegate pour obtenir l'attaque bonus au moment du combat:
+                AttaqueBonusFunc = () => GetAtkByName("Smog bleu")   // "Smog bleu" (attaque à déclencher si Face)
+             },
+
+             new()
+             {
+                 Nom = "Autre poche",
+                 Type = Element.TYPE.Veneneux,
+                 Puissance = 0,
+                 Effet = Effects.EffectsManager.EFFECT.PochetteSurprise,
+                 TirePileFace = true,
+                 AttaqueBonusFunc = () => GetAtkByName("Smog rose")     // "Smog rose" (attaque à déclencher si Face)
              },
 
             // 4) Attaques du Sbire Pétrole
@@ -126,7 +137,10 @@ namespace Game.Attacks
             if (ListAttaques == null || string.IsNullOrEmpty(nameAtk))
                 return null;
             
-            for(int i = 0; i < ListAttaques.Length; i++)
+           return ListAttaques.FirstOrDefault(a => a != null && a.Nom == nameAtk); // Cherche la première attaque qui n'est pas nulle et dont le nom est nameAtk
+            
+            
+            /*for(int i = 0; i < ListAttaques.Length; i++)
             {
                 Attaque? atk = ListAttaques[i];
                 
@@ -137,7 +151,7 @@ namespace Game.Attacks
 
             }
 
-            return null;
+            return null; */
         }  
         
 
