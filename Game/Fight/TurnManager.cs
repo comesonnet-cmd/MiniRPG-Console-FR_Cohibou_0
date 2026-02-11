@@ -166,17 +166,17 @@ namespace Game.Fight
         {
             if (turnPers.EstEnglue)     // si le personnage est englué
             {
-                bool TjrsEnglue = EffectsManager.CheckIfTjrsEnglue(turnPers);      // on vérifie si tjrs englué (1 chance sur 5)
+                bool TjrsEnglue = EffectsManager.CheckIfTjrsEnglue(turnPers);      // on vérifie s'il reste englué (1 chance sur 5)
                 
                 if (!TjrsEnglue)             // s'il n'est plus englué
                 {
-                   turnPers.EstEnglue = false;  
+                   turnPers.EstEnglue = false;  // on met  jour son état => il n'est plus englué
                 }
 
-                return !TjrsEnglue;            // on le retourne
+                return !TjrsEnglue;            // on retourne true s'il est libéré, false s'il reste englué
             }
           
-            return true;            // on retourne donc que le personnage est libéré
+            return true;            // si le personnage n'était pas englué au départ, il est libre
 
         }
        
