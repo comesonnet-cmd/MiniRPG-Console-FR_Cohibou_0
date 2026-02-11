@@ -4,23 +4,25 @@ using Game.Effects;
 using Game.Attacks;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
+using System.ComponentModel.Design;
 
 namespace Game.Characters
 {
     public class Personnage
     {
-        
+
         // Attributs: Stats - Attaques - Effets - Etats 
-        
+
         private static Random rnd = new Random();
 
-        public string Nom;
-        public Element.TYPE Type;
-        public int PointsDeVie;
-        public List<Attaque> Attaques = new List<Attaque>();
-        public int Vitesse;
+        public string Nom { get; set; }
+        public Element.TYPE Type { get; set; }
+        public int PointsDeVie { get; set; }
+        public List<Attaque> Attaques { get; } = new List<Attaque>();
+        public int Vitesse { get; set; }
         
-        public Attaque AttaqueImprevue;
+        public Attaque AttaqueImprevue { get; set; }
 
         // Durées pour les effets temporaires
         public int DureeImmuniteGivre = 0;
@@ -48,6 +50,7 @@ namespace Game.Characters
             return true;                                // aucune attaque n'est efficace sur la cible
         }
 
+
         public bool EstVivant()                         // On peut aussi l'écrire "public bool EstVivant() => PointsDeVie > 0;"
         {
             if (PointsDeVie > 0)
@@ -73,9 +76,50 @@ namespace Game.Characters
 
         // LANCER ATTAQUE
         public void LancerAttaque(Personnage cible, Attaque attaque)            // ici, cible représente l'ennemi, et "this" le joueur quand le joueur attaque
-        {                                                                       // et inversement this devient l'ennemi et cible le joueur quand l'ennemi attaqe
-            // 1. Protection Anti-Givre                                         // Donc this existe automatiquement dans toute méthode d’instance, sans devoir le déclarer.
-            if (attaque.Type == Element.TYPE.Givre && cible.EstImmunise)         // 1. Vérifier immunité Givre AVANT les dégâts
+        {                                                                       // et inversement this devient l'ennemi et cible le joueur quand l'ennemi attaque
+                                                                                // Donc this existe automatiquement dans toute méthode d’instance, sans devoir le déclarer.
+                                                                                // 1. Vérifier immunité Givre AVANT les dégâts
+            
+            // Ajout d'une nouvelle poche au Sbire suintant si l'attaque "Poche" utilisée:
+            if (attaque.Nom == "Poche")
+            {
+                var nouvellePoche = AtkManager.GetAtkByName("Nouvelle poche");
+
+                if (nouvellePoche != null && !Attaques.Contains(nouvellePoche))
+                {
+                    Attaques.Add(nouvellePoche);
+                    
+                }
+            }
+
+            // Ajout d'une ultime poche au Sbire suintant si l'attaque "Nouvelle poche" est utilisée:
+            if (attaque.Nom == "Nouvelle poche")
+            {
+
+                Console.WriteLine($"{Nom} se découvre une nouvelle poche\n");
+                
+
+                var ultimePoche = AtkManager.GetAtkByName("Ultime poche");
+
+                if (ultimePoche != null && !Attaques.Contains(ultimePoche))
+                {
+                    Attaques.Add(ultimePoche);
+                    
+                }
+
+            }
+
+            // Si Ultime poche est utilisée, on affiche le msg:
+
+            if (attaque.Nom == "Ultime poche")
+            {
+                Console.WriteLine($"{Nom} remarque une ultime poche dans la doublure de sa veste...\n");
+            }
+
+
+
+            // 1. Protection Anti-Givre                                        
+            if (attaque.Type == Element.TYPE.Givre && cible.EstImmunise)         
             {
                 Console.WriteLine($"Ah ! {Nom} a lancé {attaque.Nom} ({attaque.Type}) sur {cible.Nom} !\n");
                 Console.WriteLine($"Mais le givre n'affecte pas {cible.Nom} en ce moment !\n");
@@ -245,7 +289,7 @@ namespace Game.Characters
                     break;
             }
 
-
+            
         }
     }
 }

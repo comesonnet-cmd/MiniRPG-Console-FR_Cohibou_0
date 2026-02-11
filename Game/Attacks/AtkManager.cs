@@ -94,12 +94,38 @@ namespace Game.Attacks
 
              new()
              {
-                 Nom = "Autre poche",
+                 Nom = "Nouvelle poche",
                  Type = Element.TYPE.Veneneux,
                  Puissance = 0,
                  Effet = Effects.EffectsManager.EFFECT.PochetteSurprise,
                  TirePileFace = true,
-                 AttaqueBonusFunc = () => GetAtkByName("Smog rose")     // "Smog rose" (attaque à déclencher si Face)
+                 AttaqueBonusFunc = () => GetAtkByName("Smog flamboyant")     // "Smog flamboyant" (attaque à déclencher si Face)
+             },
+
+             new()
+             {
+                 Nom = "Ultime poche",
+                 Type = Element.TYPE.Veneneux,
+                 Puissance = 0,
+                 Effet = Effects.EffectsManager.EFFECT.PochetteSurprise,
+                 TirePileFace = true,
+                 AttaqueBonusFunc= () => GetAtkByName("Smog nébuleux")
+             },
+
+             new()
+             {
+                 Nom = "Smog flamboyant",
+                 Type = Element.TYPE.Automne,
+                 Puissance = 20,
+                 Effet = Effects.EffectsManager.EFFECT.Empoisonnement
+             },
+
+             new()
+             {
+                 Nom = "Smog nébuleux",
+                 Type = Element.TYPE.Penombre,
+                 Puissance = 100,
+                 Effet = Effects.EffectsManager.EFFECT.Aucun
              },
 
             // 4) Attaques du Sbire Pétrole

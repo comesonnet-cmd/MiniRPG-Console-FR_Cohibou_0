@@ -28,6 +28,6 @@ namespace Game.Attacks
         public Attaque? AttaqueBonus => AttaqueBonusFunc?.Invoke(); // Invoke() appelle le delegate stocké dans AttaqueBonusFunc
 
 
-        public Attaque AttaqueImprevue;
+        public Attaque AttaqueImprevue { get; set; }
     }
 }

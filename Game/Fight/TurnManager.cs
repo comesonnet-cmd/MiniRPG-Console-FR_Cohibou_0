@@ -99,6 +99,8 @@ namespace Game.Fight
 
             joueur.LancerAttaque(ennemi, attaqueChoisie);                           // Le joueur exécute l’attaque choisie sur l’ennemi (calcul des dégâts, effets, etc.)
 
+            
+
             EstLibere(joueur);
 
 
@@ -130,6 +132,9 @@ namespace Game.Fight
             }
 
             ennemi.LancerAttaque(joueur, attaqueChoisie);
+
+           
+
 
             Console.ReadKey(true);
 

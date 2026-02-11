@@ -25,39 +25,51 @@ namespace Game.Characters
             Nom = "Cohibou",
             Type = Element.TYPE.Automne,
             PointsDeVie = 100,
-            Attaques = new List<Attaque> { AtkManager.GetAtkByName("Feuille rouge"), AtkManager.GetAtkByName("Feuille dorée"), AtkManager.GetAtkByName("Jet de pomme de pin"), AtkManager.GetAtkByName("Jet de bogue") },
-            AttaqueImprevue = AtkManager.GetAtkByName("égarement"),
+            AttaqueImprevue = AtkManager.GetAtkByName("égarement")!,
             Vitesse = 4
 
         };
 
-        Personnage SbirePetrole = new Personnage
+            Cohibou.Attaques.Add(AtkManager.GetAtkByName("Feuille rouge")!);
+            Cohibou.Attaques.Add(AtkManager.GetAtkByName("Feuille dorée")!);
+            Cohibou.Attaques.Add(AtkManager.GetAtkByName("Jet de pomme de pin")!);
+            Cohibou.Attaques.Add(AtkManager.GetAtkByName("Jet de bogue")!);
+
+            Personnage SbirePetrole = new Personnage
         {
             Nom = "Sbire pétrole",
             Type = Element.TYPE.Penombre,
             PointsDeVie = 50,
-            Attaques = new List<Attaque> { AtkManager.GetAtkByName("Conversion nocturne"), AtkManager.GetAtkByName("Obscure mélasse") },
             Vitesse = 5
 
         };
 
-        Personnage SbireSuintant = new Personnage
+            SbirePetrole.Attaques.Add(AtkManager.GetAtkByName("Conversion nocturne")!);
+            SbirePetrole.Attaques.Add(AtkManager.GetAtkByName("Obscure mélasse")!);
+           
+
+            Personnage SbireSuintant = new Personnage
         {
             Nom = "Sbire suintant",
             Type = Element.TYPE.Veneneux,
             PointsDeVie = 50,
-            Attaques = new List<Attaque> { AtkManager.GetAtkByName("Méthylène gun"), AtkManager.GetAtkByName("Poche") },
             Vitesse = 3
         };
+            
+            SbireSuintant.Attaques.Add(AtkManager.GetAtkByName("Méthylène gun")!);
+            SbireSuintant.Attaques.Add(AtkManager.GetAtkByName("Poche")!);
+          
 
-        Personnage Grelon = new Personnage
+            Personnage Grelon = new Personnage
         {
             Nom = "Grêlon",
             Type = Element.TYPE.Givre,
             PointsDeVie = 50,
-            Attaques = new List<Attaque> { AtkManager.GetAtkByName("Gelée douce"), AtkManager.GetAtkByName("Martelage") },
             Vitesse = 2
         };
+
+            Grelon.Attaques.Add(AtkManager.GetAtkByName("Gelée douce")!);
+            Grelon.Attaques.Add(AtkManager.GetAtkByName("Martelage")!);
 
         tousLesPersonnages.Add(Cohibou);
         tousLesPersonnages.Add(SbireSuintant);

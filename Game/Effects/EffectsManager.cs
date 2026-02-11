@@ -43,6 +43,7 @@ namespace Game.Effects
            
         }
 
+      
         public static bool CheckIfAccule(Personnage turnPers, Personnage ennemi)
         {
             if (turnPers.EstAccule(ennemi))           // Si le joueur est acculé par l'ennemi , on initialise la durée EstIntouchable
