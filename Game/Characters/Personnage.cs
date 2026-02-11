@@ -33,6 +33,8 @@ namespace Game.Characters
         public bool EstImmunise = false;
         // Engluage
         public bool EstEnglue = false;                  // true : le personnage est englué, false : il ne l'est pas (le bool décrit seulement un état)
+        // Libération
+        public bool EstLibere = false;                  
         // Protection
         public bool EstProtege = false;
 

@@ -4,8 +4,7 @@ using Game;
 using Game.Effects;
 using Game.Characters;
 using Game.Attacks;
-
-
+using System.Reflection.Metadata.Ecma335;
 
 namespace Game.Fight
 {
@@ -17,10 +16,12 @@ namespace Game.Fight
         public static void TourJoueur(Personnage joueur, Personnage ennemi)
         {
 
-            if (!PeutJouerCeTour(joueur, ennemi)) return;
-                             
+
+
+            if (!PeutJouerCeTour(joueur, ennemi)) return;   
             
-           
+                                                                  
+                                             
             Console.Clear();
             Thread.Sleep(500); // pause 0.5 seconde           
 
@@ -98,7 +99,7 @@ namespace Game.Fight
 
             joueur.LancerAttaque(ennemi, attaqueChoisie);                           // Le joueur exécute l’attaque choisie sur l’ennemi (calcul des dégâts, effets, etc.)
 
-
+            EstLibere(joueur);
 
 
         }
@@ -106,7 +107,8 @@ namespace Game.Fight
         public static void TourEnnemi(Personnage ennemi, Personnage joueur)
         {
 
-            if (!PeutJouerCeTour(ennemi, joueur)) return;
+
+            
 
             Console.WriteLine($"\nC'est au tour de {ennemi.Nom}:\n\n");
 
@@ -131,6 +133,8 @@ namespace Game.Fight
 
             Console.ReadKey(true);
 
+            EstLibere(ennemi);
+
 
         }
 
@@ -147,13 +151,33 @@ namespace Game.Fight
 
             if (turnPers.EstAccule(ennemi))
             {
-                if (EffectsManager.CheckIfEnglue(turnPers))
+                if (EffectsManager.CheckIfAccule(turnPers, ennemi))
                 {
                     return false;
                 }
             }
 
+
             return true;
+        }
+
+        // On vérifie si les effets appliqués sur le personnage dont c'est le tour demeurent à la fin du tour:
+        public static bool EstLibere(Personnage turnPers)
+        {
+            if (turnPers.EstEnglue)     // si le personnage est englué
+            {
+                bool TjrsEnglue = EffectsManager.CheckIfTjrsEnglue(turnPers);      // on vérifie si tjrs englué (1 chance sur 5)
+                
+                if (!TjrsEnglue)             // s'il n'est plus englué
+                {
+                   turnPers.EstEnglue = false;  
+                }
+
+                return !TjrsEnglue;            // on le retourne
+            }
+          
+            return true;            // on retourne donc que le personnage est libéré
+
         }
        
     }

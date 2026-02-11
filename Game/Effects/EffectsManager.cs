@@ -20,7 +20,7 @@ namespace Game.Effects
            
         }
 
-        public static bool CheckIfEnglue(Personnage p)
+        public static bool CheckIfEnglue(Personnage turnPers)
         {
             // Engluage : une chance sur deux d'agir ou de ne rien faire
 
@@ -29,12 +29,12 @@ namespace Game.Effects
                 
             if (para)
             {
-                Console.WriteLine($"{p.Nom} est englué. Il ne peut plus bouger !!\n");
+                Console.WriteLine($"{turnPers.Nom} est englué. Il ne peut plus bouger !!\n");
               
             }                                                   
             else
             {              
-                    Console.WriteLine($"{p.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
+                Console.WriteLine($"{turnPers.Nom} est englué, mais il parvient tout de même à attaquer !!\n");
                    
             }
 
@@ -71,6 +71,25 @@ namespace Game.Effects
             return false;
         }
         
+        public static bool CheckIfTjrsEnglue(Personnage turnPers)
+        {
+
+            // Engluage Persiste: une chance sur cinq de demeurer englué:
+
+            bool stillSticky = rnd.Next(5) == 0;        // Génère un chiffre en 0 et 4. Si le résultat est 0 → stillSticky = true = le personnage reste englué. Si le résultat est autre → stillSticky = false = le personnage n'est plus englué!
+
+            if(stillSticky)
+            {
+                Console.WriteLine($"{turnPers.Nom} tente de s'extirper de la mélasse... En vain!\n");
+            }
+            else
+            {
+                Console.WriteLine($"{turnPers.Nom} tente de s'extriper de la mélasse... Avec succès!\n");
+            }
+
+            Console.ReadKey();
+            return stillSticky;
+        }
         public static void AppliquerEffets(Personnage p)
         {
             // Empoisonnement permanent
