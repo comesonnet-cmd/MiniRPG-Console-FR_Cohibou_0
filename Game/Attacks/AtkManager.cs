@@ -152,7 +152,7 @@ namespace Game.Attacks
             {
                 Nom = "égarement",
                 Type = Element.TYPE.Penombre,
-                Puissance = 15,
+                Puissance = 100,
                 Effet = Effects.EffectsManager.EFFECT.Aucun
             },
                                                       

@@ -14,7 +14,8 @@ namespace Game.Elements
         Automne,
         Penombre,
         Veneneux,
-        Givre
+        Givre,
+        Néant
     }
 
     public static double GetMultiplicateur(TYPE attaquant, TYPE defenseur)        // Crée un tableau 2D qui contient les multiplicateurs de dégâts selon le type qui attaque et celui qui défend.
