@@ -167,23 +167,31 @@ namespace Game.Fight
             return true;
         }
 
-        // On vérifie si les effets appliqués sur le personnage dont c'est le tour demeurent à la fin du tour:
+        // On vérifie si le personnage englué se libère à la fin du tour:
         public static bool EstLibere(Personnage turnPers)
         {
-            if (turnPers.EstEnglue)     // si le personnage est englué
+              
+            // Effet Engluage permanent car l'attaque "Obscure mélasse" a été utilisée 3 fois:
+            if (turnPers.nbreOMelasseSubies >= 3)
             {
-                bool TjrsEnglue = EffectsManager.CheckIfTjrsEnglue(turnPers);      // on vérifie s'il reste englué (1 chance sur 5)
-                
-                if (!TjrsEnglue)             // s'il n'est plus englué
+                return false; // donc impossibilité de tester la sortie de l'effet engluage car on sort du bool EstLibere
+            }
+
+            if (turnPers.EstEnglue)
+            {
+                bool TjrsEnglue = EffectsManager.CheckIfTjrsEnglue(turnPers);   // Test aléatoire : true = reste englué, false = se libère (1 chance sur 5 de sortir)
+
+
+                if (!TjrsEnglue)            // si TjrsEnglue = false le joueur se libère, on met  jour son état:
                 {
-                   turnPers.EstEnglue = false;  // on met  jour son état => il n'est plus englué
+                    turnPers.EstEnglue = false; // le personnage n'est plus englué (plus sous l'emprise de l'effet Engluage)
                 }
 
-                return !TjrsEnglue;            // on retourne true s'il est libéré, false s'il reste englué
+                return !TjrsEnglue;             // retourne (EstLibere=) true si libéré, (EstLibere=) false s'il reste englué
             }
-          
-            return true;            // si le personnage n'était pas englué au départ, il est libre
-
+            
+            // si le personnage n'est pas englué c'est qu'il est libre:
+                return true;
         }
         
     }

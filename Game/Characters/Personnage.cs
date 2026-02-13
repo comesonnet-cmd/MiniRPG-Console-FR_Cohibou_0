@@ -28,6 +28,7 @@ namespace Game.Characters
         public int DureeImmuniteGivre = 0;
         public int DureeProtectionVeneneux = 0;
         public int DureeEstIntouchable = 0;             // Nombre de tours consécutilfs où le joueur EstAccule
+        public int nbreOMelasseSubies = 0;              // Nombre de fois où le personnage a subi l'attaque "Obscure mélasse"
 
         // Etat d'empoisonnement permanent jusqu'au KO
         public bool EstEmpoisonne = false;
@@ -72,7 +73,9 @@ namespace Game.Characters
             }
 
         }
-      
+
+        
+
 
         // LANCER ATTAQUE
         public void LancerAttaque(Personnage cible, Attaque attaque)            // ici, cible représente l'ennemi, et "this" le joueur quand le joueur attaque
@@ -116,7 +119,14 @@ namespace Game.Characters
                 Console.WriteLine($"{Nom} remarque une ultime poche dans la doublure de sa veste...\n");
             }
 
+            // Si l'attaque "Obscure mélasse" est encaissée trois fois, l'ennemi ne peut plus sortir de l'engluage:
 
+            if (attaque.Nom == "Obscure mélasse") // lorsque Obscure mélasse est lancée
+            {
+                cible.nbreOMelasseSubies++;       // On augmente de 1 nbreOMelasseSubies
+                                                                                                                  
+            }
+            
 
             // 1. Protection Anti-Givre                                        
             if (attaque.Type == Element.TYPE.Givre && cible.EstImmunise)         
