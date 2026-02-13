@@ -128,14 +128,14 @@ namespace Game.Characters
 
             // 2. Protection Anti-Vénéneux (réduction dégâts)
             double reduction = 1.0;
-            if (attaque.Type == Element.TYPE.Veneneux && attaque.Nom != "Poche" && attaque.Nom != "Smog bleu" && cible.EstProtege)
+            if (attaque.Type == Element.TYPE.Veneneux && attaque.Nom != "Poche" && attaque.Nom != "Nouvelle poche" && attaque.Nom != "Ultime poche" && attaque.Nom != "Smog bleu" && cible.EstProtege)
             {
                 reduction = 0.5;
                 Console.WriteLine($"Ah ! {Nom} a lancé {attaque.Nom} ({attaque.Type}) sur {cible.Nom} !\n");
                 Console.WriteLine($"Mais {cible.Nom} est protégé ! L'attaque vénéneuse est affaiblie\n");
 
             }
-            else if (attaque.Type == Element.TYPE.Veneneux && attaque.Nom == "Poche" && cible.EstProtege)
+            else if (attaque.Type == Element.TYPE.Veneneux && attaque.Nom == "Poche" && attaque.Nom == "Nouvelle poche" && attaque.Nom == "Ultime poche" && cible.EstProtege)
             {
                 reduction = 0.5;
                 Console.WriteLine($"Ah ! {Nom} a lancé {attaque.Nom} ({attaque.Type}) sur {cible.Nom} !\n");
@@ -161,7 +161,7 @@ namespace Game.Characters
                 // Si l'attaque cible quelqu'un qui s'est protégé du poison, on n'affiche pas le message car affiché plus haut
                 Console.WriteLine();
             }
-            else if (attaque.Nom == "Smog bleu")
+            else if (attaque.Nom == "Smog bleu" || attaque.Nom == "Smog flamboyant" || attaque.Nom == "Smog nébuleux")
             {
                 // Si l'attaque est Smog Bleu, on n'affiche pas le message car déjà affiché 
                 Console.WriteLine();
@@ -267,9 +267,13 @@ namespace Game.Characters
 
                         if (face)
                         {
-
-                            Console.WriteLine($"{Nom} sort une boule de smog de sa poche...Il lance smog bleu!\n");
-
+                            switch (attaque.Nom)
+                            {
+                                case "Poche": Console.WriteLine($"{Nom} sort une boule de smog de sa poche...Il lance {attaque.AttaqueBonus.Nom} ({attaque.AttaqueBonus.Type})!\n"); break;
+                                case "Nouvelle poche": Console.WriteLine($"{Nom} sort une boule de smog de sa poche...Il lance {attaque.AttaqueBonus.Nom} ({attaque.AttaqueBonus.Type })!\n"); break;
+                                case "Ultime poche": Console.WriteLine($"{Nom} sort une boule de smog de sa poche...Il lance {attaque.AttaqueBonus.Nom} ({attaque.AttaqueBonus.Type})!\n"); break;
+                            }
+                            
                             if (attaque.AttaqueBonus != null)
                             {
                                 // Lancer l'attaque bonus sur la cible

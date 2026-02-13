@@ -18,7 +18,7 @@ namespace Game.Fight
 
             EstLibere(ennemi);
 
-            if (!PeutJouerCeTour(joueur, ennemi)) return;   
+            if (joueur.EstVivant() && ennemi.EstVivant() && !PeutJouerCeTour(joueur, ennemi)) return;   
             
                                                                   
                                              
@@ -111,6 +111,7 @@ namespace Game.Fight
 
 
             EstLibere(joueur);
+            if (ennemi.EstVivant() && joueur.EstVivant() && !PeutJouerCeTour(ennemi, joueur)) return;
 
             Console.WriteLine($"\nC'est au tour de {ennemi.Nom}:\n\n");
 

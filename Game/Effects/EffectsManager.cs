@@ -46,7 +46,7 @@ namespace Game.Effects
       
         public static bool CheckIfAccule(Personnage turnPers, Personnage ennemi)
         {
-            if (turnPers.EstAccule(ennemi))           // Si le joueur est acculé par l'ennemi , on initialise la durée EstIntouchable
+            if (turnPers.EstAccule(ennemi))           // Si le personnage dont c'est le tour est acculé par l'ennemi, on initialise la durée EstIntouchable
             {
                 turnPers.DureeEstIntouchable++;
             }
@@ -75,7 +75,7 @@ namespace Game.Effects
         public static bool CheckIfTjrsEnglue(Personnage turnPers)
         {
 
-            // Engluage Persiste: une chance sur cinq de demeurer englué:
+            // Engluage Persiste: une chance sur cinq de sortir de l'engluage:
 
             bool stillSticky = rnd.Next(5) != 0;        // Génère un chiffre en 0 et 4. Si le résultat est 0 → stillSticky = false = le personnage sort de l'engluage. Si le résultat est autre → stillSticky = true = le personnage reste englué!
 
