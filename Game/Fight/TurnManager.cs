@@ -16,7 +16,7 @@ namespace Game.Fight
         public static void TourJoueur(Personnage joueur, Personnage ennemi)
         {
 
-
+            EstLibere(ennemi);
 
             if (!PeutJouerCeTour(joueur, ennemi)) return;   
             
@@ -110,7 +110,7 @@ namespace Game.Fight
         {
 
 
-            
+            EstLibere(joueur);
 
             Console.WriteLine($"\nC'est au tour de {ennemi.Nom}:\n\n");
 

@@ -77,7 +77,7 @@ namespace Game.Effects
 
             // Engluage Persiste: une chance sur cinq de demeurer englué:
 
-            bool stillSticky = rnd.Next(5) == 0;        // Génère un chiffre en 0 et 4. Si le résultat est 0 → stillSticky = true = le personnage reste englué. Si le résultat est autre → stillSticky = false = le personnage n'est plus englué!
+            bool stillSticky = rnd.Next(5) != 0;        // Génère un chiffre en 0 et 4. Si le résultat est 0 → stillSticky = false = le personnage sort de l'engluage. Si le résultat est autre → stillSticky = true = le personnage reste englué!
 
             if(stillSticky)
             {
