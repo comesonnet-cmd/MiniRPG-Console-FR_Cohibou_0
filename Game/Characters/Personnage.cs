@@ -145,7 +145,7 @@ namespace Game.Characters
                 Console.WriteLine($"Mais {cible.Nom} est protégé ! L'attaque vénéneuse est affaiblie\n");
 
             }
-            else if (attaque.Type == Element.TYPE.Veneneux && attaque.Nom == "Poche" && attaque.Nom == "Nouvelle poche" && attaque.Nom == "Ultime poche" && cible.EstProtege)
+            else if (attaque.Type == Element.TYPE.Veneneux && attaque.Nom == "Poche" && cible.EstProtege || attaque.Type == Element.TYPE.Veneneux && attaque.Nom == "Nouvelle poche" && cible.EstProtege || attaque.Type == Element.TYPE.Veneneux && attaque.Nom == "Ultime poche" && cible.EstProtege)
             {
                 reduction = 0.5;
                 Console.WriteLine($"Ah ! {Nom} a lancé {attaque.Nom} ({attaque.Type}) sur {cible.Nom} !\n");

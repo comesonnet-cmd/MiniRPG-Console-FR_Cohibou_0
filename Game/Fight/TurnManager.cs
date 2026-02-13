@@ -17,6 +17,7 @@ namespace Game.Fight
         {
 
             EstLibere(ennemi);
+           
 
             if (joueur.EstVivant() && ennemi.EstVivant() && !PeutJouerCeTour(joueur, ennemi)) return;   
             
@@ -104,6 +105,9 @@ namespace Game.Fight
             EstLibere(joueur);
 
 
+            if (joueur.Vitesse < ennemi.Vitesse) { EffectsManager.AppliquerEffets(joueur); EffectsManager.AppliquerEffets(ennemi); }       
+            
+
         }
 
         public static void TourEnnemi(Personnage ennemi, Personnage joueur)
@@ -111,6 +115,8 @@ namespace Game.Fight
 
 
             EstLibere(joueur);
+            
+
             if (ennemi.EstVivant() && joueur.EstVivant() && !PeutJouerCeTour(ennemi, joueur)) return;
 
             Console.WriteLine($"\nC'est au tour de {ennemi.Nom}:\n\n");
@@ -142,6 +148,10 @@ namespace Game.Fight
             EstLibere(ennemi);
 
 
+            if (ennemi.Vitesse < joueur.Vitesse) { EffectsManager.AppliquerEffets(ennemi); EffectsManager.AppliquerEffets(joueur); }
+                               
+            
+
         }
 
         // Vérifie tous les effets qui pourraient empêcher le joueur dont c'est le tour de jouer. S'il ne peut pas jouer => false; si toutes les vérifications sont faites, on retourne true => il peut jouer
@@ -167,6 +177,11 @@ namespace Game.Fight
             return true;
         }
 
+        
+
+       
+        
+        
         // On vérifie si le personnage englué se libère à la fin du tour:
         public static bool EstLibere(Personnage turnPers)
         {

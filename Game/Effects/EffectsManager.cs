@@ -93,6 +93,12 @@ namespace Game.Effects
         }
         public static void AppliquerEffets(Personnage p)
         {
+
+            ManagePoison(p);
+            ManageImmunGivre(p);
+            ManageProtectVénéneux(p);
+
+
             // Empoisonnement permanent
            
                static void ManagePoison(Personnage p)

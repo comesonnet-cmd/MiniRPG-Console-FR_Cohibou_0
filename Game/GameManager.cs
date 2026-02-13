@@ -140,7 +140,7 @@ namespace Game
 
             if (!confirmation)                                                             // if (!confirmation) signifie si la variable confirmation est fausse (! = NON logique). Autrement dit : si le joueur a répondu NON.
             {
-                Console.WriteLine("\n Ah! Tu m'as fait peur mon gars! Alors, qui es-tu VRAIMENT ?");
+                Console.WriteLine("\n Ah! Mais alors... qui es-tu VRAIMENT ?");
                 Thread.Sleep(1500);                     // Thread.Sleep(1500); → pause 1,5 seconde (1500 ms) pour laisser le message s’afficher. (Nécessite using System.Threading; si tu veux éviter les warnings.)
 
                 return;
