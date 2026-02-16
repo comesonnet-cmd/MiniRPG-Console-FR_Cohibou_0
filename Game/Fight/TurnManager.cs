@@ -102,10 +102,9 @@ namespace Game.Fight
 
             
 
-            EstLibere(joueur);
 
 
-            if (joueur.Vitesse < ennemi.Vitesse) { EffectsManager.AppliquerEffets(joueur); EffectsManager.AppliquerEffets(ennemi); }       
+                  
             
 
         }
@@ -145,13 +144,17 @@ namespace Game.Fight
 
             Console.ReadKey(true);
 
-            EstLibere(ennemi);
+           
 
+                                                     
 
-            if (ennemi.Vitesse < joueur.Vitesse) { EffectsManager.AppliquerEffets(ennemi); EffectsManager.AppliquerEffets(joueur); }
-                               
-            
+        }
 
+        // Applique et affiche  la fin des tours joueur et ennemi les effets comme empoisonnement, protection, immunité...
+        public static void TourEffets(Personnage joueur, Personnage ennemi)
+        {
+            EffectsManager.AppliquerEffets(joueur);
+            EffectsManager.AppliquerEffets(ennemi);          
         }
 
         // Vérifie tous les effets qui pourraient empêcher le joueur dont c'est le tour de jouer. S'il ne peut pas jouer => false; si toutes les vérifications sont faites, on retourne true => il peut jouer
