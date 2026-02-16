@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.ComponentModel.Design;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.CompilerServices;
 
 namespace Game.Characters
 {
@@ -29,6 +31,8 @@ namespace Game.Characters
         public int DureeProtectionVeneneux = 0;
         public int DureeEstIntouchable = 0;             // Nombre de tours consécutilfs où le joueur EstAccule
         public int nbreOMelasseSubies = 0;              // Nombre de fois où le personnage a subi l'attaque "Obscure mélasse"
+        public int nbreNPocheUtilisee = 0;              // Nombre de fois où une nouvelle poche est utilisée
+        public int nbreUPocheUtilisee = 0;               // Nombre de fois où ultime poche est utilisée
 
         // Etat d'empoisonnement permanent jusqu'au KO
         public bool EstEmpoisonne = false;
@@ -82,8 +86,12 @@ namespace Game.Characters
         {                                                                       // et inversement this devient l'ennemi et cible le joueur quand l'ennemi attaque
                                                                                 // Donc this existe automatiquement dans toute méthode d’instance, sans devoir le déclarer.
                                                                                 // 1. Vérifier immunité Givre AVANT les dégâts
-            
+
+
             // Ajout d'une nouvelle poche au Sbire suintant si l'attaque "Poche" utilisée:
+
+            
+
             if (attaque.Nom == "Poche")
             {
                 var nouvellePoche = AtkManager.GetAtkByName("Nouvelle poche");
@@ -98,10 +106,18 @@ namespace Game.Characters
             // Ajout d'une ultime poche au Sbire suintant si l'attaque "Nouvelle poche" est utilisée:
             if (attaque.Nom == "Nouvelle poche")
             {
+                cible.nbreNPocheUtilisee ++;        // nombre de fois où l'attaque Nouvelle poche est utilisée sur la cible
 
-                Console.WriteLine($"{Nom} se découvre une nouvelle poche\n");
-                
-
+                // si l'attaque Nouvelle poche est utilisée plus d'une fois, on n'affiche pas de message :
+                if (cible.nbreNPocheUtilisee > 1)
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"{Nom} se découvre une nouvelle poche\n");
+                }
+                               
                 var ultimePoche = AtkManager.GetAtkByName("Ultime poche");
 
                 if (ultimePoche != null && !Attaques.Contains(ultimePoche))
@@ -112,11 +128,21 @@ namespace Game.Characters
 
             }
 
-            // Si Ultime poche est utilisée, on affiche le msg:
+            // Si Ultime poche est utilisée 1 fois, on affiche le msg:
 
             if (attaque.Nom == "Ultime poche")
             {
-                Console.WriteLine($"{Nom} remarque une ultime poche dans la doublure de sa veste...\n");
+                cible.nbreUPocheUtilisee ++;   
+
+                if (cible.nbreUPocheUtilisee > 1)
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"{Nom} remarque une ultime poche dans la doublure de sa veste...\n");
+                }
+                
             }
 
             // Si l'attaque "Obscure mélasse" est encaissée trois fois, l'ennemi ne peut plus sortir de l'engluage:
