@@ -78,6 +78,11 @@ namespace Game.Characters
 
         }
 
+        public void GainPV(int PV)
+        {
+            PointsDeVie += PV;        
+        }
+
         
 
 
@@ -270,6 +275,20 @@ namespace Game.Characters
                         Console.WriteLine($"{cible.Nom} ne se sent pas bien...il prend le type Pénombre !\n");
                     }
                     break;
+
+                case EffectsManager.EFFECT.degatsAbsorption:
+                    // Convertit les dégâts infligés à l'ennemi en PV et les absorbe:
+                    
+                   
+                   cible.SubirDegats(degatsFinaux);
+                   this.GainPV(degatsFinaux);
+
+                    if (degatsFinaux > 0)
+                    {
+                        Console.WriteLine($"{this.Nom} absorbe les PV de {cible.Nom}. Il en a maintenant {this.PointsDeVie} !");
+                    }
+                                                            
+                        break;
 
                 case EffectsManager.EFFECT.Engluage:
                     // Englue la cible, elle a une chance sur deux de pouvoir attaquer à chaque tour, jusqu'à la fin du combat. 

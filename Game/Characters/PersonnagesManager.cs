@@ -46,6 +46,7 @@ namespace Game.Characters
 
             SbirePetrole.Attaques.Add(AtkManager.GetAtkByName("Conversion nocturne")!);
             SbirePetrole.Attaques.Add(AtkManager.GetAtkByName("Obscure mélasse")!);
+            SbirePetrole.Attaques.Add(AtkManager.GetAtkByName("Mots toxiques")!);
            
 
             Personnage SbireSuintant = new Personnage

@@ -17,9 +17,11 @@ namespace Game.Effects
             PochetteSurprise,
             ImmuGivre,
             ProtectVeneneux,
+            degatsAbsorption
            
         }
 
+       
         public static bool CheckIfEnglue(Personnage turnPers)
         {
             // Engluage : une chance sur deux d'agir ou de ne rien faire

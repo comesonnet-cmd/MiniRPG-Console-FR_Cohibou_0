@@ -145,6 +145,14 @@ namespace Game.Attacks
                 Effet = Effects.EffectsManager.EFFECT.Engluage
             },
 
+            new()
+            {
+                Nom = "Mots toxiques",
+                Type= Element.TYPE.Penombre,
+                Puissance = 5,
+                Effet = Effects.EffectsManager.EFFECT.degatsAbsorption     // Absorbe et ajoute à ses PV le nbre de dégâts infligés (entre 5 et 20 aléatoirement) 
+            },
+
             //ATTAQUES IMPREVUES:
 
             // Attaque imprévue de Cohibou:
