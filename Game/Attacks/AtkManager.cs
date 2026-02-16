@@ -10,6 +10,8 @@ namespace Game.Attacks
 {
     public static class AtkManager
     {
+        static Random rnd = new Random();
+
         public static readonly Attaque[] ListAttaques = new Attaque[]
         {
             // Créer les attaques 
@@ -146,11 +148,11 @@ namespace Game.Attacks
             },
 
             new()
-            {
+            {               
                 Nom = "Mots toxiques",
                 Type= Element.TYPE.Penombre,
-                Puissance = 5,
-                Effet = Effects.EffectsManager.EFFECT.degatsAbsorption     // Absorbe et ajoute à ses PV le nbre de dégâts infligés (entre 5 et 20 aléatoirement) 
+                PuissanceAleaFunc = () => rnd.Next(5, 21),                 // la puissance de l'attaque varie entre 5 et 20   ( 5 inclus, 21 exclu → renvoie un nombre entre 5 et 20)      
+                Effet = Effects.EffectsManager.EFFECT.degatsAbsorption     // Absorbe et ajoute à ses PV le nbre de dégâts infligés
             },
 
             //ATTAQUES IMPREVUES:

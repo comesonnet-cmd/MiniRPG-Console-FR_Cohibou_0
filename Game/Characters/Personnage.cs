@@ -189,7 +189,7 @@ namespace Game.Characters
 
             // Calcul des dégâts
             double multiplicateur = Element.GetMultiplicateur(attaque.Type, cible.Type);    // Récupère le multiplicateur de dégâts selon les types de l'attaque et de la cible
-            int degatsFinaux = (int)(attaque.Puissance * multiplicateur * reduction);           // - (int) convertit les dégâts en entier / - Calcule les dégâts finaux : puissance de l'attaque * multiplicateur de type * éventuelle réduction
+            int degatsFinaux = (int)(attaque.GetPuissance() * multiplicateur * reduction);           // - (int) convertit les dégâts en entier / - Calcule les dégâts finaux : puissance de l'attaque * multiplicateur de type * éventuelle réduction
             cible.SubirDegats(degatsFinaux);                                                    // Applique les dégâts calculés à la cible
 
             if (attaque.Effet == EffectsManager.EFFECT.ImmuGivre || attaque.Effet == EffectsManager.EFFECT.ProtectVeneneux)
@@ -224,7 +224,7 @@ namespace Game.Characters
             {
                 Console.WriteLine($"Cela enlève {degatsFinaux} PV au {cible.Nom}. Il ne lui reste plus que {cible.PointsDeVie} PV.\n");
             }
-            else if (attaque.Puissance > 0 && multiplicateur == 0)          // Attaque offensive mais inefficace
+            else if (attaque.GetPuissance() > 0 && multiplicateur == 0)          // Attaque offensive mais inefficace
             {
                 Console.WriteLine($"Cela n'inflige pas de dégâts au {cible.Nom}.\n");
             }
@@ -279,8 +279,7 @@ namespace Game.Characters
                 case EffectsManager.EFFECT.degatsAbsorption:
                     // Convertit les dégâts infligés à l'ennemi en PV et les absorbe:
                     
-                   
-                   cible.SubirDegats(degatsFinaux);
+                                   
                    this.GainPV(degatsFinaux);
 
                     if (degatsFinaux > 0)

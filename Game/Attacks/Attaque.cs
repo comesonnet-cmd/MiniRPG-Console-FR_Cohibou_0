@@ -12,9 +12,13 @@ namespace Game.Attacks
 {
     public class Attaque
     {
-        public string Nom {  get; set; }
-        internal Element.TYPE Type { get; set; }    
+
+
+        public string Nom { get; set; }
+        internal Element.TYPE Type { get; set; }
         public int Puissance { get; set; }
+
+        public Func<int>? PuissanceAleaFunc { get; set; }      // Création du delegate pour récupérer la puissance dynamiquement en cas de puissance aléatoire
 
         public Effects.EffectsManager.EFFECT Effet { get; set; }
         // Tire à pile ou face
@@ -29,5 +33,19 @@ namespace Game.Attacks
 
 
         public Attaque AttaqueImprevue { get; set; }
+
+        /* Création d'une méthode pour récupérer la puissance réelle au moment de l'attaque
+           => retourne la puissance aléaotoire si non null ou sinon la puissance normale:   */
+        public int GetPuissance()
+        {
+            if (PuissanceAleaFunc != null)
+            {
+                return PuissanceAleaFunc();
+            }
+            else
+            {
+                return Puissance;
+            }
+        }                               /* peut aussi s'écire: return PuissanceAleaFunc != null ? PuissanceAleaFunc() : Puissance; */
     }
 }
